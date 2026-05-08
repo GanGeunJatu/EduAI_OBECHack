@@ -1849,10 +1849,357 @@
             cursor: pointer; transition: all 0.2s;
         }
         .hint-btn-no:hover { background: var(--bg4); color: var(--text); }
+
+        /* ═══════════════════════════════════════════════════════
+           LANDING PAGE
+        ═══════════════════════════════════════════════════════ */
+        #landingPage {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #080b18;
+        }
+
+        /* Animated gradient background */
+        .landing-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(108,99,255,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 90%, rgba(0,212,170,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 60% 30%, rgba(108,99,255,0.08) 0%, transparent 50%);
+            animation: bgShift 8s ease-in-out infinite alternate;
+        }
+        @keyframes bgShift {
+            0%   { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.06) translate(-1%, 1%); }
+        }
+
+        /* Subtle grid lines */
+        .landing-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        /* Floating particles */
+        .landing-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .lp { /* landing particle */
+            position: absolute;
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+            opacity: 0;
+        }
+        @keyframes floatUp {
+            0%   { opacity: 0;   transform: translateY(0)    scale(0.5); }
+            10%  { opacity: 0.6; }
+            90%  { opacity: 0.3; }
+            100% { opacity: 0;   transform: translateY(-90vh) scale(1.2); }
+        }
+
+        /* Card */
+        .landing-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(19, 22, 42, 0.82);
+            backdrop-filter: blur(28px) saturate(1.4);
+            border: 1px solid rgba(108, 99, 255, 0.25);
+            border-radius: 28px;
+            padding: 52px 52px 44px;
+            width: min(520px, 94vw);
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.04) inset,
+                0 32px 80px rgba(0,0,0,0.55),
+                0 0 60px rgba(108,99,255,0.08);
+            animation: cardIn 0.7s cubic-bezier(.175,.885,.32,1.1) forwards;
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(32px) scale(0.96); }
+            to   { opacity: 1; transform: translateY(0)    scale(1);    }
+        }
+
+        /* Logo / wordmark */
+        .landing-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+        .landing-logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #6c63ff, #00d4aa);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 8px 24px rgba(108,99,255,0.4);
+            flex-shrink: 0;
+        }
+        .landing-wordmark {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: #e8eaf6;
+        }
+        .landing-wordmark span { color: #00d4aa; }
+
+        /* Tagline */
+        .landing-tagline {
+            text-align: center;
+            font-size: 13.5px;
+            color: #6c7098;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 38px;
+            font-weight: 500;
+        }
+
+        /* Divider */
+        .landing-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(108,99,255,0.3), transparent);
+            margin-bottom: 36px;
+        }
+
+        /* Role selector */
+        .landing-role-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .role-card {
+            padding: 18px 14px;
+            border-radius: 14px;
+            border: 2px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.03);
+            cursor: pointer;
+            transition: all 0.22s;
+            text-align: center;
+        }
+        .role-card:hover {
+            border-color: rgba(108,99,255,0.4);
+            background: rgba(108,99,255,0.08);
+            transform: translateY(-2px);
+        }
+        .role-card.selected {
+            border-color: var(--accent);
+            background: rgba(108,99,255,0.15);
+            box-shadow: 0 0 0 1px rgba(108,99,255,0.3), 0 8px 20px rgba(108,99,255,0.15);
+        }
+        .role-card-icon { font-size: 28px; margin-bottom: 8px; }
+        .role-card-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e8eaf6;
+        }
+        .role-card-sub {
+            font-size: 11px;
+            color: #5a5c70;
+            margin-top: 3px;
+        }
+
+        /* Form fields */
+        .landing-field {
+            margin-bottom: 18px;
+        }
+        .landing-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #5a6080;
+            margin-bottom: 8px;
+        }
+        .landing-input {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1.5px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: #e8eaf6;
+            font-family: 'Sora', sans-serif;
+            font-size: 15px;
+            padding: 13px 16px;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .landing-input:focus {
+            border-color: rgba(108,99,255,0.6);
+            background: rgba(108,99,255,0.06);
+            box-shadow: 0 0 0 3px rgba(108,99,255,0.1);
+        }
+        .landing-input::placeholder { color: #3a3d55; }
+        .landing-input option { background: #13162a; color: #e8eaf6; }
+
+        /* Grade row (hidden for teachers) */
+        #landingGradeField { transition: all 0.3s; }
+
+        /* CTA button */
+        .landing-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6c63ff, #00d4aa);
+            color: white;
+            border: none;
+            border-radius: 13px;
+            font-family: 'Sora', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.25s;
+            box-shadow: 0 8px 24px rgba(108,99,255,0.3);
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+        .landing-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .landing-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108,99,255,0.4); }
+        .landing-btn:hover::before { opacity: 1; }
+        .landing-btn:active { transform: translateY(0); }
+        .landing-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+        /* Error shake */
+        .landing-shake { animation: lShake 0.4s ease; }
+        @keyframes lShake {
+            0%,100%{transform:translateX(0)}
+            20%{transform:translateX(-8px)}
+            40%{transform:translateX(8px)}
+            60%{transform:translateX(-5px)}
+            80%{transform:translateX(5px)}
+        }
+
+        /* Footer note */
+        .landing-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #3a3d55;
+            margin-top: 24px;
+            line-height: 1.7;
+        }
+
+        /* Slide-out animation */
+        .landing-exit {
+            animation: landingExit 0.55s cubic-bezier(.4,0,.2,1) forwards !important;
+        }
+        @keyframes landingExit {
+            to { opacity: 0; transform: scale(1.04); pointer-events: none; }
+        }
+
+        /* ─ User chip in header ─ */
+        .user-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px 6px 8px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text2);
+            cursor: default;
+        }
+        .user-chip-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- ═══════════════════ LANDING PAGE ═══════════════════ -->
+    <div id="landingPage">
+        <!-- Backgrounds -->
+        <div class="landing-bg"></div>
+        <div class="landing-grid"></div>
+        <div class="landing-particles" id="landingParticles"></div>
+
+        <!-- Card -->
+        <div class="landing-card">
+            <!-- Logo -->
+            <div class="landing-logo">
+                <div class="landing-logo-icon">✦</div>
+                <div class="landing-wordmark">Edu<span>AI</span></div>
+            </div>
+            <div class="landing-tagline">Smart Learning Platform · AI-Powered</div>
+            <div class="landing-divider"></div>
+
+            <!-- Role selector -->
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#5a6080;margin-bottom:12px">I am a</div>
+            <div class="landing-role-row">
+                <div class="role-card selected" id="roleStudent" onclick="selectRole('student')">
+                    <div class="role-card-icon">🎓</div>
+                    <div class="role-card-label">Student</div>
+                    <div class="role-card-sub">Learn & explore</div>
+                </div>
+                <div class="role-card" id="roleTeacher" onclick="selectRole('teacher')">
+                    <div class="role-card-icon">📋</div>
+                    <div class="role-card-label">Teacher</div>
+                    <div class="role-card-sub">Monitor & analyse</div>
+                </div>
+            </div>
+
+            <!-- Name -->
+            <div class="landing-field">
+                <label class="landing-label" for="landingName">Your Name</label>
+                <input class="landing-input" id="landingName" type="text"
+                    placeholder="e.g. Nattaporn, Krit, Siriporn…"
+                    maxlength="40" autocomplete="given-name"
+                    onkeydown="if(event.key==='Enter') launchApp()">
+            </div>
+
+            <!-- Grade (students only) -->
+            <div class="landing-field" id="landingGradeField">
+                <label class="landing-label" for="landingGrade">Grade Level</label>
+                <select class="landing-input" id="landingGrade">
+                    <option value="10">Grade 10 (ม.4)</option>
+                    <option value="11">Grade 11 (ม.5)</option>
+                    <option value="12">Grade 12 (ม.6)</option>
+                </select>
+            </div>
+
+            <!-- CTA -->
+            <button class="landing-btn" id="landingBtn" onclick="launchApp()">
+                Start Learning →
+            </button>
+
+            <div class="landing-footer">
+                Your name and grade are saved locally in your browser.<br>
+                No account required · 100% private
+            </div>
+        </div>
+    </div>
 
     <!-- SYSTEM PROMPT MODAL -->
     <div class="modal-overlay" id="promptModal">
@@ -1892,6 +2239,10 @@
             <div class="lang-toggle">
                 <button class="lang-btn active" id="langEN" onclick="setLang('en')">EN</button>
                 <button class="lang-btn" id="langTH" onclick="setLang('th')">ไทย</button>
+            </div>
+            <div class="user-chip" id="userChip" style="display:none">
+                <div class="user-chip-avatar" id="userChipAvatar">🎓</div>
+                <span id="userChipName">—</span>
             </div>
             <div class="streak-badge" onclick="switchTab('quiz')">
                 <span class="streak-fire">🔥</span>
@@ -2134,6 +2485,7 @@
                             <span id="generateBtnText">🚀 <span data-en="Generate Quiz with AI"
                                     data-th="สร้างข้อสอบด้วย AI">Generate Quiz with AI</span></span>
                         </button>
+                        <div id="generateStatus" style="text-align:center;font-size:13px;margin-top:12px;min-height:20px;transition:color 0.3s"></div>
                     </div>
 
                     <div class="quiz-active" id="quizActive">
@@ -2492,7 +2844,10 @@
             xp: parseInt(localStorage.getItem('xp') || '45'),
             quizHistory: JSON.parse(localStorage.getItem('quizHistory') || '[]'),
             aiHistory: JSON.parse(localStorage.getItem('aiHistory') || '[]'),
-            currentGrade: '10',
+            userName: localStorage.getItem('userName') || '',
+            userRole: localStorage.getItem('userRole') || 'student',
+            userGrade: localStorage.getItem('userGrade') || '10',
+            currentGrade: localStorage.getItem('userGrade') || '10',
             currentSubject: 'math',
             currentTopic: '',
             quizQuestions: [],
@@ -5222,63 +5577,214 @@ Reply ONLY with valid JSON, nothing else:
         // ==================== QUIZ ====================
         let quizData = [];
 
+        // ── Extract JSON array from raw AI response (handles markdown fences) ──
+        function extractJSONArray(raw) {
+            // Strip markdown code fences
+            let s = raw.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+
+            // Try direct parse first
+            try { const arr = JSON.parse(s); if (Array.isArray(arr)) return arr; } catch {}
+
+            // Try to find the first [...] block
+            const start = s.indexOf('[');
+            const end   = s.lastIndexOf(']');
+            if (start !== -1 && end > start) {
+                try {
+                    const arr = JSON.parse(s.slice(start, end + 1));
+                    if (Array.isArray(arr)) return arr;
+                } catch {}
+            }
+            return null;
+        }
+
+        // ── Validate a question object has the required fields ──
+        function isValidQuestion(q) {
+            return q && typeof q.question === 'string' && q.question.length > 5
+                && Array.isArray(q.options) && q.options.length >= 2
+                && typeof q.correct === 'number'
+                && q.correct >= 0 && q.correct < q.options.length;
+        }
+
+        // ── Build a loading status message to show while waiting ──
+        function setGenerateStatus(msg, color) {
+            const el = document.getElementById('generateStatus');
+            if (el) { el.textContent = msg; el.style.color = color || 'var(--text2)'; }
+        }
+
         async function startQuiz() {
-            const btn = document.getElementById('generateBtn');
-            btn.disabled = true;
-            document.getElementById('generateBtnText').innerHTML = `<span class="spinner"></span> ${t('generating')}`;
-
-            const grade = document.getElementById('quizGrade').value;
+            const btn       = document.getElementById('generateBtn');
+            const grade     = document.getElementById('quizGrade').value;
             const subjectEl = document.getElementById('quizSubject');
-            const subject = subjectEl.options[subjectEl.selectedIndex].text;
-            const topicEl  = document.getElementById('quizTopic');
-            const chosenTopic = topicEl.value.trim(); // "" = all topics
-            const count = parseInt(document.getElementById('quizCount').value);
-            const diff = document.getElementById('quizDifficulty').value;
+            const subject   = subjectEl.options[subjectEl.selectedIndex].text;
+            const topicEl   = document.getElementById('quizTopic');
+            const chosenTopic = topicEl ? topicEl.value.trim() : '';
+            const count     = parseInt(document.getElementById('quizCount').value);
+            const diff      = document.getElementById('quizDifficulty').value;
 
-            // Store for analytics tracking
+            // Disable button and show loading state
+            btn.disabled = true;
+            document.getElementById('generateBtnText').innerHTML =
+                `<span class="spinner"></span>&nbsp;Generating ${count} questions with AI…`;
+            setGenerateStatus('⏳ Asking Claude to create fresh questions for you…', 'var(--text2)');
+
+            // Store for analytics
             state.currentQuizSubject = subject;
             state.currentQuizTopic   = chosenTopic || 'Mixed — ' + subject;
             state.currentQuizGrade   = grade;
 
-            const topicInstruction = chosenTopic
-                ? `Focus ONLY on the topic: "${chosenTopic}".`
-                : `Cover a variety of topics from the ${subject} curriculum.`;
+            // Build context from grade/subject/topic
+            const gradeLabel    = { '10': 'Grade 10 (ม.4)', '11': 'Grade 11 (ม.5)', '12': 'Grade 12 (ม.6)' }[grade] || `Grade ${grade}`;
+            const diffLabel     = { easy: 'easy (basic recall)', medium: 'medium (application)', hard: 'hard (analysis/synthesis)' }[diff] || diff;
+            const topicLine     = chosenTopic
+                ? `Topic: "${chosenTopic}" — ALL questions must be about this specific topic.`
+                : `Topic: Any topic from the ${subject} curriculum for ${gradeLabel}. Mix different subtopics.`;
+            const userName      = state.userName ? `Student name: ${state.userName}. ` : '';
 
-            const prompt = `Generate ${count} multiple-choice quiz questions for Grade ${grade} ${subject} students (Thai curriculum, ${diff} difficulty). ${topicInstruction}
+            // System prompt that forces clean JSON output
+            const systemPrompt =
+`You are an expert Thai high school quiz generator. You produce ONLY valid JSON arrays of quiz questions.
+NEVER output any text outside the JSON array. NEVER use markdown. NEVER add explanation before or after.
+Output MUST start with [ and end with ].`;
 
-Return ONLY valid JSON array. No markdown, no explanation. Format:
-[{"question":"...","options":["A) ...","B) ...","C) ...","D) ..."],"correct":0,"explanation":"..."}]
+            // Main prompt — highly specific to avoid generic/recycled questions
+            const userPrompt =
+`Generate EXACTLY ${count} unique multiple-choice questions.
+${userName}Grade: ${gradeLabel}
+Subject: ${subject}
+${topicLine}
+Difficulty: ${diffLabel}
+Curriculum: Thai Ministry of Education (OBEC/IPST) aligned
 
-correct is the 0-based index of the correct option. Make questions curriculum-aligned and educational.`;
+Rules:
+- Questions must be SPECIFIC and VARIED — no two questions should test the same concept
+- Include calculation questions, definition questions, and application questions
+- Use real numbers, formulas, and examples relevant to Thai students
+- Each question must have EXACTLY 4 options labeled A) B) C) D)
+- Distractors must be plausible (common mistakes, not obviously wrong)
+- "correct" is the 0-based index (0=A, 1=B, 2=C, 3=D)
+- "explanation" explains WHY the correct answer is right (1-2 sentences)
 
-            try {
-                let raw = await callClaudeAPI({ messages: [{ role: 'user', content: prompt }] });
-                raw = raw.replace(/```json|```/g, '').trim();
-                quizData = JSON.parse(raw);
-            } catch (e) {
-                quizData = getFallbackQuestions(subject, grade);
+Return ONLY this JSON array (no other text):
+[
+  {
+    "question": "full question text here",
+    "options": ["A) option", "B) option", "C) option", "D) option"],
+    "correct": 0,
+    "explanation": "explanation of correct answer"
+  }
+]`;
+
+            let attempts = 0;
+            let parsed   = null;
+
+            while (attempts < 3 && !parsed) {
+                attempts++;
+                if (attempts > 1) {
+                    setGenerateStatus(`⚙️ Attempt ${attempts}/3 — retrying…`, 'var(--warn)');
+                }
+                try {
+                    const raw = await callClaudeAPI({
+                        system: systemPrompt,
+                        messages: [{ role: 'user', content: userPrompt }],
+                        max_tokens: 1000
+                    });
+                    const arr = extractJSONArray(raw);
+                    if (arr && arr.length > 0) {
+                        const valid = arr.filter(isValidQuestion);
+                        if (valid.length >= Math.min(3, count)) {
+                            parsed = valid;
+                        }
+                    }
+                } catch (e) {
+                    if (e.message === 'NETWORK_ERROR') {
+                        setGenerateStatus('❌ Server offline — run: node server.js', 'var(--danger)');
+                        btn.disabled = false;
+                        document.getElementById('generateBtnText').innerHTML = t('generateBtn');
+                        return;
+                    }
+                }
             }
 
             btn.disabled = false;
             document.getElementById('generateBtnText').innerHTML = t('generateBtn');
 
-            if (!quizData.length) { showToast('Using sample questions.', 'warn'); quizData = getFallbackQuestions(subject, grade); }
+            if (!parsed || parsed.length === 0) {
+                setGenerateStatus('⚠️ AI could not generate questions — using sample questions instead', 'var(--warn)');
+                quizData = getFallbackQuestions(subject, grade, chosenTopic);
+                showToast('Using built-in sample questions', 'warn');
+            } else {
+                // Shuffle questions for variety each time
+                quizData = parsed.sort(() => Math.random() - 0.5).slice(0, count);
+                const src = currentLang === 'th'
+                    ? `✅ สร้าง ${quizData.length} ข้อสำเร็จ!`
+                    : `✅ Generated ${quizData.length} fresh questions!`;
+                setGenerateStatus(src, 'var(--success)');
+            }
 
-            state.currentQ = 0;
+            // Small delay so user sees success message
+            await new Promise(r => setTimeout(r, 600));
+            setGenerateStatus('', '');
+
+            state.currentQ      = 0;
             state.correctAnswers = 0;
-            document.getElementById('quizSetup').style.display = 'none';
+            document.getElementById('quizSetup').style.display  = 'none';
             document.getElementById('quizActive').style.display = 'block';
             document.getElementById('quizResult').style.display = 'none';
             showQuestion();
         }
 
-        function getFallbackQuestions(subject, grade) {
+        // ── Fallback questions — specific to subject/topic so they're still relevant ──
+        function getFallbackQuestions(subject, grade, topic) {
+            const subj = (subject || '').toLowerCase();
+            const t10  = topic || '';
+
+            // Physics fallbacks
+            if (subj.includes('physics') || t10.toLowerCase().includes('kinematic') || t10.toLowerCase().includes('newton')) {
+                return [
+                    { question: 'A car starts from rest and accelerates at 4 m/s² for 5 seconds. What is its final velocity?', options: ['A) 10 m/s', 'B) 20 m/s', 'C) 16 m/s', 'D) 25 m/s'], correct: 1, explanation: 'Using v = u + at: v = 0 + 4×5 = 20 m/s.' },
+                    { question: 'Which of Newton\'s laws states that F = ma?', options: ['A) First Law', 'B) Second Law', 'C) Third Law', 'D) Law of Gravitation'], correct: 1, explanation: 'Newton\'s Second Law: the net force equals mass times acceleration.' },
+                    { question: 'A 10 kg object experiences a net force of 50 N. What is its acceleration?', options: ['A) 0.2 m/s²', 'B) 500 m/s²', 'C) 5 m/s²', 'D) 40 m/s²'], correct: 2, explanation: 'a = F/m = 50/10 = 5 m/s².' },
+                    { question: 'An object is thrown horizontally from a height of 20 m. How long does it take to hit the ground? (g = 10 m/s²)', options: ['A) 1 s', 'B) 2 s', 'C) 4 s', 'D) 20 s'], correct: 1, explanation: 'h = ½gt² → 20 = ½(10)t² → t = 2 s.' },
+                    { question: 'A ball is dropped from rest. What is its speed after falling for 3 seconds? (g = 10 m/s²)', options: ['A) 10 m/s', 'B) 20 m/s', 'C) 30 m/s', 'D) 45 m/s'], correct: 2, explanation: 'v = gt = 10×3 = 30 m/s.' }
+                ];
+            }
+            // Chemistry fallbacks
+            if (subj.includes('chem') || t10.toLowerCase().includes('chem')) {
+                return [
+                    { question: 'How many moles are in 44 g of CO₂? (Molar mass = 44 g/mol)', options: ['A) 0.5 mol', 'B) 1 mol', 'C) 2 mol', 'D) 44 mol'], correct: 1, explanation: 'n = m/M = 44/44 = 1 mol.' },
+                    { question: 'What is the pH of a solution with [H⁺] = 10⁻³ mol/L?', options: ['A) pH = 1', 'B) pH = 3', 'C) pH = 7', 'D) pH = 11'], correct: 1, explanation: 'pH = -log[H⁺] = -log(10⁻³) = 3.' },
+                    { question: 'Which type of bond involves the transfer of electrons?', options: ['A) Covalent bond', 'B) Hydrogen bond', 'C) Ionic bond', 'D) Metallic bond'], correct: 2, explanation: 'Ionic bonds form by electron transfer between metals and non-metals.' },
+                    { question: 'What is the atomic number of Carbon?', options: ['A) 4', 'B) 6', 'C) 8', 'D) 12'], correct: 1, explanation: 'Carbon has 6 protons, so its atomic number Z = 6.' },
+                    { question: 'In the reaction 2H₂ + O₂ → 2H₂O, how many moles of water form from 4 moles of H₂?', options: ['A) 2 mol', 'B) 4 mol', 'C) 6 mol', 'D) 8 mol'], correct: 1, explanation: 'The ratio H₂:H₂O = 2:2 = 1:1, so 4 mol H₂ → 4 mol H₂O.' }
+                ];
+            }
+            // Biology fallbacks
+            if (subj.includes('bio') || t10.toLowerCase().includes('bio') || t10.toLowerCase().includes('cell') || t10.toLowerCase().includes('gene')) {
+                return [
+                    { question: 'Which organelle produces ATP through cellular respiration?', options: ['A) Nucleus', 'B) Ribosome', 'C) Mitochondria', 'D) Chloroplast'], correct: 2, explanation: 'Mitochondria are the site of cellular respiration and ATP production.' },
+                    { question: 'What are the base pairing rules in DNA?', options: ['A) A–C and G–T', 'B) A–T and G–C', 'C) A–G and T–C', 'D) A–U and G–C'], correct: 1, explanation: 'In DNA: Adenine pairs with Thymine (A–T) and Guanine with Cytosine (G–C).' },
+                    { question: 'Which process produces 4 haploid cells from one diploid cell?', options: ['A) Mitosis', 'B) Binary fission', 'C) Meiosis', 'D) Budding'], correct: 2, explanation: 'Meiosis involves two divisions, producing 4 haploid (n) daughter cells.' },
+                    { question: 'A plant cell but NOT an animal cell contains which of the following?', options: ['A) Mitochondria', 'B) Cell wall', 'C) Ribosome', 'D) Cell membrane'], correct: 1, explanation: 'Plant cells have a rigid cell wall made of cellulose; animal cells do not.' },
+                    { question: 'Which part of the cell contains the genetic information (DNA)?', options: ['A) Ribosome', 'B) Mitochondria', 'C) Cell membrane', 'D) Nucleus'], correct: 3, explanation: 'The nucleus contains chromosomes made of DNA, which store genetic information.' }
+                ];
+            }
+            // Math fallbacks
+            if (subj.includes('math') || t10.toLowerCase().includes('calcul') || t10.toLowerCase().includes('function')) {
+                return [
+                    { question: 'What is the derivative of f(x) = 3x⁴ − 2x² + 5?', options: ['A) 12x³ − 4x', 'B) 12x³ − 2x', 'C) 3x³ − 2x', 'D) 12x⁴ − 4x'], correct: 0, explanation: 'Power rule: d/dx(3x⁴) = 12x³, d/dx(−2x²) = −4x, d/dx(5) = 0.' },
+                    { question: 'What is ∫6x² dx?', options: ['A) 12x', 'B) 2x³ + C', 'C) 3x³ + C', 'D) 6x³ + C'], correct: 1, explanation: '∫6x² dx = 6·(x³/3) + C = 2x³ + C.' },
+                    { question: 'If f(x) = 2x + 3 and g(x) = x², what is f(g(2))?', options: ['A) 7', 'B) 11', 'C) 14', 'D) 49'], correct: 1, explanation: 'g(2) = 4, then f(4) = 2(4)+3 = 11.' },
+                    { question: 'Solve: log₂(8) = ?', options: ['A) 2', 'B) 3', 'C) 4', 'D) 8'], correct: 1, explanation: 'log₂(8) = 3 because 2³ = 8.' },
+                    { question: 'What is the sum of the arithmetic series 3 + 7 + 11 + ... for 10 terms?', options: ['A) 120', 'B) 180', 'C) 210', 'D) 230'], correct: 2, explanation: 'S₁₀ = 10/2 × (2×3 + 9×4) = 5 × 42 = 210.' }
+                ];
+            }
+            // Generic fallback
             return [
-                { question: `Which of the following best describes a function in mathematics?`, options: ['A) A relation where each input maps to multiple outputs', 'B) A relation where each input maps to exactly one output', 'C) Any graph on a coordinate plane', 'D) A set of numbers'], correct: 1, explanation: 'A function maps each input to exactly one output.' },
-                { question: `What is the derivative of f(x) = x²?`, options: ['A) x', 'B) 2', 'C) 2x', 'D) x³/3'], correct: 2, explanation: 'Using the power rule: d/dx(xⁿ) = nxⁿ⁻¹, so d/dx(x²) = 2x.' },
-                { question: `What does the atomic number of an element represent?`, options: ['A) Number of neutrons', 'B) Number of protons', 'C) Atomic mass', 'D) Number of electron shells'], correct: 1, explanation: 'Atomic number = number of protons, which defines the element.' },
-                { question: `Which organelle is known as the "powerhouse of the cell"?`, options: ['A) Nucleus', 'B) Ribosome', 'C) Golgi apparatus', 'D) Mitochondria'], correct: 3, explanation: 'Mitochondria produce ATP through cellular respiration.' },
-                { question: `If v = u + at, what does 'a' represent?`, options: ['A) Area', 'B) Amplitude', 'C) Acceleration', 'D) Atomic number'], correct: 2, explanation: 'In kinematics, a = acceleration (rate of change of velocity).' }
+                { question: 'What is the scientific method\'s first step?', options: ['A) Hypothesis', 'B) Experiment', 'C) Observation', 'D) Conclusion'], correct: 2, explanation: 'Science begins with observation of a phenomenon, then forming a hypothesis.' },
+                { question: 'Which of the following is a vector quantity?', options: ['A) Speed', 'B) Mass', 'C) Temperature', 'D) Velocity'], correct: 3, explanation: 'Velocity has both magnitude and direction, making it a vector quantity.' },
+                { question: 'What is 25% of 200?', options: ['A) 25', 'B) 40', 'C) 50', 'D) 75'], correct: 2, explanation: '25% × 200 = 0.25 × 200 = 50.' },
+                { question: 'Water boils at what temperature at sea level?', options: ['A) 90°C', 'B) 95°C', 'C) 100°C', 'D) 110°C'], correct: 2, explanation: 'Water boils at 100°C (212°F) at standard atmospheric pressure (1 atm).' },
+                { question: 'What does DNA stand for?', options: ['A) Deoxyribonucleic Acid', 'B) Dioxyribose Nucleic Acid', 'C) Diribonucleic Acid', 'D) Deoxyribose Nucleus Acid'], correct: 0, explanation: 'DNA = Deoxyribonucleic Acid — the molecule that carries genetic information.' }
             ];
         }
 
@@ -5293,11 +5799,13 @@ correct is the 0-based index of the correct option. Make questions curriculum-al
             document.getElementById('nextBtn').style.display = 'none';
 
             const labels = ['A', 'B', 'C', 'D'];
-            document.getElementById('optionsGrid').innerHTML = q.options.map((opt, i) =>
-                `<button class="option-btn" onclick="selectOption(${i})" id="opt${i}">
-      <span class="option-label">${labels[i]}</span>${opt.replace(/^[A-D]\)\s*/, '')}
-    </button>`
-            ).join('');
+            document.getElementById('optionsGrid').innerHTML = q.options.map((opt, i) => {
+                // Strip any leading "A) " "B) " etc. the AI may have included
+                const clean = opt.replace(/^[A-Da-d][.)\s]+/, '').trim();
+                return `<button class="option-btn" onclick="selectOption(${i})" id="opt${i}">
+                    <span class="option-label">${labels[i]}</span>${clean}
+                </button>`;
+            }).join('');
 
             clearInterval(state.timer);
             state.timeLeft = 30;
@@ -5833,14 +6341,177 @@ correct is the 0-based index of the correct option. Make questions curriculum-al
         }
 
         // ==================== INIT ====================
+
+        // ==================== LANDING PAGE ====================
+        let _selectedRole = 'student';
+
+        function selectRole(role) {
+            _selectedRole = role;
+
+            const studentCard = document.getElementById('roleStudent');
+            const teacherCard = document.getElementById('roleTeacher');
+            const gradeField  = document.getElementById('landingGradeField');
+            const btn         = document.getElementById('landingBtn');
+
+            if (studentCard) studentCard.classList.toggle('selected', role === 'student');
+            if (teacherCard) teacherCard.classList.toggle('selected', role === 'teacher');
+
+            if (gradeField) {
+                gradeField.style.opacity       = (role === 'teacher') ? '0.35' : '1';
+                gradeField.style.pointerEvents  = (role === 'teacher') ? 'none'  : '';
+            }
+
+            // Update button text to reflect role
+            if (btn) {
+                btn.textContent = (role === 'teacher')
+                    ? 'Open Dashboard →'
+                    : 'Start Learning →';
+            }
+        }
+
+        function launchApp() {
+            const nameEl  = document.getElementById('landingName');
+            const gradeEl = document.getElementById('landingGrade');
+            const name    = nameEl  ? nameEl.value.trim()  : '';
+            const grade   = gradeEl ? gradeEl.value        : '10';
+            const role    = _selectedRole || 'student';
+
+            // Validate name
+            if (!name) {
+                if (nameEl) {
+                    nameEl.classList.add('landing-shake');
+                    nameEl.focus();
+                    nameEl.placeholder = 'Please enter your name first!';
+                    setTimeout(() => {
+                        nameEl.classList.remove('landing-shake');
+                        nameEl.placeholder = 'e.g. Nattaporn, Krit, Siriporn…';
+                    }, 1000);
+                }
+                return;
+            }
+
+            // Save everything
+            state.userName     = name;
+            state.userRole     = role;
+            state.userGrade    = (role === 'student') ? grade : '';
+            state.currentGrade = (role === 'student') ? grade : '10';
+
+            localStorage.setItem('userName',  name);
+            localStorage.setItem('userRole',  role);
+            localStorage.setItem('userGrade', state.userGrade);
+
+            // Sync grade selector in content tab
+            const contentGradeEl = document.getElementById('gradeSelect');
+            if (contentGradeEl && role === 'student') {
+                contentGradeEl.value = grade;
+                updateTopics();
+                updateQuizTopics();
+            }
+
+            // Apply profile to header chip + system prompt
+            applyUserProfile();
+
+            // Hide landing page immediately, then remove
+            const page = document.getElementById('landingPage');
+            if (page) {
+                page.classList.add('landing-exit');
+                setTimeout(() => {
+                    page.style.display = 'none';
+                    page.style.visibility = 'hidden';
+                }, 500);
+            }
+
+            // Teachers go straight to Analytics
+            if (role === 'teacher') {
+                setTimeout(() => switchTab('analytics'), 520);
+            }
+        }
+
+        function applyUserProfile() {
+            const name   = state.userName;
+            const role   = state.userRole;
+            const chip   = document.getElementById('userChip');
+            const avatar = document.getElementById('userChipAvatar');
+            const label  = document.getElementById('userChipName');
+
+            if (name && chip) {
+                avatar.textContent = role === 'teacher' ? '📋' : '🎓';
+                label.textContent  = name + (state.userGrade ? ' · G' + state.userGrade : '');
+                chip.style.display = 'flex';
+            }
+
+            // Personalise the AI welcome message
+            const welcomeSpan = document.querySelector('#chatMessages .msg-bubble span[data-en]');
+            if (welcomeSpan && name) {
+                const th = currentLang === 'th';
+                const greeting = th
+                    ? `สวัสดี <strong>${name}</strong>! ฉันคือ AI Tutor ของคุณ ฉันจะไม่แค่ให้คำตอบ — ฉันจะช่วยให้คุณ<strong>คิดผ่านปัญหา</strong>ทีละขั้นตอน วันนี้คุณกำลังเรียนอะไรอยู่? 🧠`
+                    : `Hello <strong>${name}</strong>! I'm your AI tutor. I won't just give you answers — I'll help you <strong>think through problems</strong> step by step. What are you working on today? 🧠`;
+                welcomeSpan.innerHTML = greeting;
+            }
+
+            // Inject name into system prompt so AI uses it
+            if (name) {
+                const gradeNote = state.userGrade ? ` in Grade ${state.userGrade}` : '';
+                const roleNote  = role === 'teacher' ? 'This user is a teacher reviewing the platform.' : '';
+                const personalLine = `\n\nThe student's name is ${name}${gradeNote}. Address them by name. ${roleNote}`;
+                // Append to current system prompt if not already added
+                if (!currentSystemPrompt.includes("student's name is")) {
+                    currentSystemPrompt = currentSystemPrompt + personalLine;
+                } else {
+                    // Replace existing name line
+                    currentSystemPrompt = currentSystemPrompt = currentSystemPrompt.replace(/\n\nThe student\'s name is[^\n]*/g, personalLine);
+                }
+            }
+        }
+
+        function spawnParticles() {
+            const container = document.getElementById('landingParticles');
+            if (!container) return;
+            const colors = ['rgba(108,99,255,0.5)', 'rgba(0,212,170,0.4)', 'rgba(108,99,255,0.3)', 'rgba(255,101,132,0.25)'];
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('div');
+                p.className = 'lp';
+                const size = 3 + Math.random() * 6;
+                p.style.cssText = `
+                    width:${size}px; height:${size}px;
+                    left:${Math.random()*100}%;
+                    bottom:-${size}px;
+                    background:${colors[Math.floor(Math.random()*colors.length)]};
+                    animation-duration:${7+Math.random()*10}s;
+                    animation-delay:${Math.random()*8}s;
+                `;
+                container.appendChild(p);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            spawnParticles();
+
+            // Always show the landing page on every load.
+            // Pre-fill fields if user has visited before (saves them retyping).
+            const savedName  = localStorage.getItem('userName')  || '';
+            const savedRole  = localStorage.getItem('userRole')  || 'student';
+            const savedGrade = localStorage.getItem('userGrade') || '10';
+
+            if (savedName) {
+                // Pre-fill the form with their previous details
+                const nameEl  = document.getElementById('landingName');
+                const gradeEl = document.getElementById('landingGrade');
+                if (nameEl)  nameEl.value  = savedName;
+                if (gradeEl) gradeEl.value = savedGrade;
+                selectRole(savedRole); // highlight correct role card
+            } else {
+                document.getElementById('landingGrade').value = '10';
+            }
+
             updateTopics();
             updateQuizTopics();
             renderStreak();
             refreshAnalytics();
             checkServerHealth();
             setInterval(checkServerHealth, 30000);
-            // Close modal on overlay click
+
             document.getElementById('promptModal').addEventListener('click', function (e) {
                 if (e.target === this) closePromptModal();
             });
