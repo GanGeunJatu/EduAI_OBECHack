@@ -1691,6 +1691,164 @@
             border-top-color: var(--accent);
             border-color: var(--border);
         }
+
+        /* ── Photo upload button ── */
+        .img-upload-btn {
+            width: 46px;
+            height: 46px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .img-upload-btn:hover { background: var(--bg4); transform: scale(1.05); }
+        .img-upload-btn.has-image { border-color: var(--accent); background: rgba(108,99,255,0.15); }
+        .msg-img { max-width: 200px; border-radius: 10px; margin-bottom: 6px; display: block; border: 1px solid var(--border); }
+
+        /* ── Blank answer widget ── */
+        .blank-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            vertical-align: middle;
+            margin: 2px 0;
+            flex-wrap: wrap;
+        }
+        .blank-check-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Sora', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .blank-check-btn:hover:not(:disabled) { background: #5a52e0; }
+        .blank-check-btn:disabled { opacity: 0.5; cursor: default; }
+        .blank-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            animation: fadeInBadge 0.3s ease;
+        }
+        @keyframes fadeInBadge { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
+        .blank-status-badge.correct { background: rgba(0,212,170,0.15); color: var(--success); }
+        .blank-status-badge.wrong   { background: rgba(255,101,132,0.15); color: var(--danger); }
+
+        /* ── Hint slide-up panel ── */
+        .hint-panel {
+            position: fixed;
+            bottom: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(500px, 94vw);
+            background: var(--bg2);
+            border: 1px solid var(--amber);
+            border-radius: 16px 16px 0 0;
+            z-index: 999;
+            transition: bottom 0.35s cubic-bezier(.4,0,.2,1);
+            box-shadow: 0 -8px 40px rgba(255,179,71,0.2);
+            overflow: hidden;
+        }
+        .hint-panel.open { bottom: 0; }
+        .hint-panel-hdr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 20px 10px;
+            border-bottom: 1px solid var(--border2);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--amber);
+        }
+        .hint-close-x {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg3);
+            color: var(--text2);
+            font-size: 13px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hint-close-x:hover { background: var(--bg4); color: var(--text); }
+        .hint-panel-body { padding: 14px 20px 20px; }
+        .hint-step {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .hint-num {
+            width: 22px; height: 22px;
+            background: var(--amber);
+            color: #0d0f1a;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* ── Hint ask dialog ── */
+        .hint-dialog-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInBadge 0.2s ease;
+        }
+        .hint-dialog-box {
+            background: var(--bg2);
+            border: 1px solid var(--amber);
+            border-radius: 18px;
+            padding: 28px 30px;
+            width: min(400px, 90vw);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .hint-dialog-icon { font-size: 36px; margin-bottom: 10px; }
+        .hint-dialog-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .hint-dialog-sub { font-size: 13px; color: var(--text2); margin-bottom: 22px; line-height: 1.6; }
+        .hint-dialog-btns { display: flex; gap: 10px; }
+        .hint-btn-yes {
+            flex: 1; padding: 11px;
+            background: var(--amber); color: #0d0f1a;
+            border: none; border-radius: 10px;
+            font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .hint-btn-yes:hover { background: #e6a030; transform: translateY(-1px); }
+        .hint-btn-no {
+            flex: 1; padding: 11px;
+            background: var(--bg3); color: var(--text2);
+            border: 1px solid var(--border); border-radius: 10px;
+            font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .hint-btn-no:hover { background: var(--bg4); color: var(--text); }
     </style>
 </head>
 
@@ -1847,7 +2005,21 @@
                             </div>
                         </div>
                     </div>
+                    <!-- image preview strip -->
+                    <div id="imgPreviewStrip" style="display:none;padding:8px 20px 4px;border-top:1px solid var(--border2)">
+                        <div style="position:relative;display:inline-block">
+                            <img id="imgPreviewThumb" src="" alt="preview"
+                                style="height:68px;border-radius:8px;border:2px solid var(--accent);object-fit:cover;max-width:110px">
+                            <button onclick="clearImagePreview()"
+                                style="position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:var(--danger);color:white;border:none;cursor:pointer;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center">✕</button>
+                            <div id="imgPreviewName" style="font-size:10px;color:var(--text3);margin-top:3px;text-align:center;max-width:110px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis"></div>
+                        </div>
+                    </div>
                     <div class="chat-input-area">
+                        <input type="file" id="imgUploadInput" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
+                        <button class="img-upload-btn" id="imgUploadBtn"
+                            onclick="document.getElementById('imgUploadInput').click()"
+                            title="Upload homework photo (image will be sent to AI)">📷</button>
                         <textarea class="chat-input" id="chatInput"
                             placeholder="Ask about any topic or share a homework problem..." rows="1"
                             onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
@@ -1929,16 +2101,16 @@
                                 <option value="biology" data-en="Biology" data-th="ชีววิทยา">Biology</option>
                                 <option value="thai" data-en="Thai Language" data-th="ภาษาไทย">Thai Language</option>
                                 <option value="english" data-en="English" data-th="ภาษาอังกฤษ">English</option>
-                                <option value="social" data-en="Social Studies" data-th="สังคมศึกษา">Social Studies</option>
+                                <option value="social" data-en="Social Studies" data-th="สังคมศึกษา">Social Studies
+                                </option>
                             </select>
                         </div>
-                        <div class="form-group" id="quizTopicGroup">
-                            <label class="form-label">Topic <span style="font-weight:400;color:var(--text2);font-size:12px">(optional — pick one or type your own)</span></label>
-                            <div id="quizTopicGrid" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;margin-bottom:10px"></div>
-                            <div style="display:flex;gap:8px;align-items:center">
-                                <input type="text" id="quizTopicCustom" class="form-select" placeholder="Or type a custom topic..." style="flex:1;font-size:13px" oninput="syncCustomTopic(this.value)">
-                                <button onclick="clearQuizTopic()" style="padding:8px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;font-size:12px;white-space:nowrap">✕ Clear</button>
-                            </div>
+                        <div class="form-group">
+                            <label class="form-label" data-en="Topic (optional)" data-th="หัวข้อ (ไม่บังคับ)">Topic (optional)</label>
+                            <select class="form-select" id="quizTopic">
+                                <option value="">All topics in subject</option>
+                            </select>
+                            <div style="font-size:11px;color:var(--text3);margin-top:5px" data-en="Leave as 'All topics' for a mixed quiz, or pick a specific topic to focus on." data-th="เลือก 'ทุกหัวข้อ' สำหรับคำถามผสม หรือเลือกหัวข้อเฉพาะ">Leave as 'All topics' for a mixed quiz, or pick a specific topic to focus on.</div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" data-en="Number of Questions" data-th="จำนวนคำถาม">Number of
@@ -2077,32 +2249,24 @@
 
                 <div class="stats-grid">
                     <div class="stat-overview-card">
-                        <div class="stat-overview-val" id="totalStudents">142</div>
-                        <div class="stat-overview-lbl" data-en="Total Students" data-th="นักเรียนทั้งหมด">Total Students
-                        </div>
-                        <div class="stat-trend trend-up">↑ 8 <span data-en="this month" data-th="เดือนนี้">this
-                                month</span></div>
+                        <div class="stat-overview-val" id="totalStudents" style="color:var(--accent)">0</div>
+                        <div class="stat-overview-lbl" id="totalStudentsLbl" data-en="Quizzes Taken" data-th="จำนวนแบบทดสอบ">Quizzes Taken</div>
+                        <div class="stat-trend" id="totalStudentsTrend" style="color:var(--text3)">—</div>
                     </div>
                     <div class="stat-overview-card">
-                        <div class="stat-overview-val" id="avgScore" style="color:var(--accent2)">67%</div>
-                        <div class="stat-overview-lbl" data-en="Average Quiz Score" data-th="คะแนนเฉลี่ย">Average Quiz
-                            Score</div>
-                        <div class="stat-trend trend-down">↓ 3% <span data-en="from last week"
-                                data-th="จากสัปดาห์ที่แล้ว">from last week</span></div>
+                        <div class="stat-overview-val" id="avgScore" style="color:var(--accent2)">—</div>
+                        <div class="stat-overview-lbl" data-en="Average Quiz Score" data-th="คะแนนเฉลี่ย">Average Quiz Score</div>
+                        <div class="stat-trend" id="avgScoreTrend" style="color:var(--text3)">No data yet</div>
                     </div>
                     <div class="stat-overview-card">
-                        <div class="stat-overview-val" id="aiQueries" style="color:var(--accent)">384</div>
-                        <div class="stat-overview-lbl" data-en="AI Tutor Queries" data-th="คำถามถึง AI Tutor">AI Tutor
-                            Queries</div>
-                        <div class="stat-trend trend-up">↑ 12% <span data-en="this week" data-th="สัปดาห์นี้">this
-                                week</span></div>
+                        <div class="stat-overview-val" id="aiQueries" style="color:var(--accent)">0</div>
+                        <div class="stat-overview-lbl" data-en="AI Tutor Queries" data-th="คำถามถึง AI Tutor">AI Tutor Queries</div>
+                        <div class="stat-trend" id="aiQueriesTrend" style="color:var(--text3)">—</div>
                     </div>
                     <div class="stat-overview-card">
-                        <div class="stat-overview-val" id="concernTopics" style="color:var(--danger)">6</div>
-                        <div class="stat-overview-lbl" data-en="Topics Needing Attention"
-                            data-th="หัวข้อที่ต้องให้ความสนใจ">Topics Needing Attention</div>
-                        <div class="stat-trend trend-down">↑ 2 <span data-en="new alerts" data-th="การแจ้งเตือนใหม่">new
-                                alerts</span></div>
+                        <div class="stat-overview-val" id="concernTopics" style="color:var(--danger)">0</div>
+                        <div class="stat-overview-lbl" data-en="Topics Needing Attention" data-th="หัวข้อที่ต้องให้ความสนใจ">Topics Needing Attention</div>
+                        <div class="stat-trend" id="concernTopicsTrend" style="color:var(--text3)">—</div>
                     </div>
                 </div>
 
@@ -2324,8 +2488,8 @@
 
         // ==================== STATE ====================
         const state = {
-            streak: parseInt(localStorage.getItem('streak') || '0'),
-            xp: parseInt(localStorage.getItem('xp') || '0'),
+            streak: parseInt(localStorage.getItem('streak') || '3'),
+            xp: parseInt(localStorage.getItem('xp') || '45'),
             quizHistory: JSON.parse(localStorage.getItem('quizHistory') || '[]'),
             aiHistory: JSON.parse(localStorage.getItem('aiHistory') || '[]'),
             currentGrade: '10',
@@ -2339,23 +2503,54 @@
             sessionMsgs: 0,
             sessionXP: 0,
             isChatting: false,
-            weakTopics: JSON.parse(localStorage.getItem('weakTopics') || '{}')
+            weakTopics: {}
         };
 
-        // ==================== AI API HELPER ====================
-        async function callAIAPI({ system, messages, max_tokens = 1000 }) {
-            const res = await fetch('http://localhost:3000/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ systemPrompt: system, messages, max_tokens })
-            });
-            if (!res.ok) {
-                throw new Error(`API error ${res.status}`);
+        // ==================== CLAUDE API HELPER ====================
+        // ── Points to your Express backend (server.js on localhost:3000) ──
+        const BACKEND_URL = 'http://localhost:3000/api/chat';
+
+        async function callClaudeAPI({ system, messages, max_tokens = 1000 }) {
+            // Sends: { messages, systemPrompt }  — matches server.js exactly
+            // Returns: data.response
+            const body = { messages, systemPrompt: system };
+            let res;
+            try {
+                res = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+            } catch (networkErr) {
+                throw new Error('NETWORK_ERROR');
             }
-            const data = await res.json();
-            return data.response;
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || data.error) {
+                throw new Error(data.error || `Server error ${res.status}`);
+            }
+            return data.response || data.text || '';
+        }
+
+        async function checkServerHealth() {
+            const dot   = document.getElementById('serverDot');
+            const label = document.getElementById('serverLabel');
+            if (!dot || !label) return;
+            const ctrl  = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 3000);
+            try {
+                const r = await fetch('http://localhost:3000/api/health', { signal: ctrl.signal });
+                clearTimeout(timer);
+                if (r.ok) {
+                    dot.style.background = 'var(--success)';
+                    label.style.color    = 'var(--success)';
+                    label.textContent    = 'Server online';
+                } else throw new Error();
+            } catch {
+                clearTimeout(timer);
+                dot.style.background = 'var(--danger)';
+                label.style.color    = 'var(--danger)';
+                label.textContent    = 'Server offline — run: node server.js';
+            }
         }
 
         // ==================== AI SYSTEM PROMPT ====================
@@ -4196,9 +4391,12 @@ Acceptable pH for drinking water: 6.5–8.5</div>
             document.querySelectorAll('.topic-item').forEach(e => e.classList.remove('active'));
             if (el) el.classList.add('active');
             loadContent(topic);
-            if (!state.weakTopics[topic]) state.weakTopics[topic] = { views: 0, aiQueries: 0, subject: state.currentSubject, grade: state.currentGrade, scores: [] };
+            if (!state.weakTopics[topic]) state.weakTopics[topic] = { views: 0, aiQueries: 0, avgScore: Math.floor(50 + Math.random() * 45) };
             state.weakTopics[topic].views++;
-            localStorage.setItem('weakTopics', JSON.stringify(state.weakTopics));
+            // Record to real analytics DB
+            const subjectEl3 = document.getElementById('subjectSelect');
+            const subjectName3 = subjectEl3 ? subjectEl3.options[subjectEl3.selectedIndex].text : 'General';
+            recordTopicView(topic, subjectName3);
         }
 
         async function loadContent(topic, forceRefetch) {
@@ -4231,15 +4429,33 @@ Acceptable pH for drinking water: 6.5–8.5</div>
                 : 'Write all content in English.';
 
             try {
-                const res = await fetch('http://localhost:3000/api/generate-content', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ topic, subject: subjectName, grade, lang })
+                const html = await callClaudeAPI({
+                    messages: [{
+                        role: 'user',
+                        content: `Create educational content for a Thai high school student (Grade ${grade}) learning about "${topic}" in ${subjectName}.
+
+${langInstruction}
+
+Write in HTML using ONLY these tags/classes:
+- <h2> for main title
+- <h3> for sub-sections
+- <p> for paragraphs
+- <ul><li> for lists
+- <div class="formula-box"> for formulas/equations
+- <div class="example-box"> for worked examples (start with <strong>ตัวอย่าง:</strong> if Thai, <strong>Example:</strong> if English)
+- <div class="info-box"> for interesting facts/tips (start with 💡)
+
+Requirements:
+- Include at least 3-4 sections
+- Include at least one formula or key equation
+- Include at least one worked example with numbers
+- Include a real-world application relevant to Thai students
+- Keep language clear and suitable for Grade ${grade} level
+- Content should align with Thai Ministry of Education curriculum
+
+Return ONLY the HTML content, no extra text.`
+                    }]
                 });
-                if (!res.ok) throw new Error('Failed to generate content');
-                const data = await res.json();
-                const html = data.content;
-                
                 if (!contentDB[topic]) {
                     contentDB[topic] = { grade, subject: subjectName, tags: [`Grade ${grade}`, subjectName] };
                 }
@@ -4513,21 +4729,56 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
         }
 
         // ==================== AI TUTOR ====================
+        // ── Image upload state ────────────────────────────────────
+        let pendingImage = null; // { base64, mime, name }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) { showToast('Please upload an image file.', 'warn'); return; }
+            if (file.size > 5 * 1024 * 1024) { showToast('Image must be under 5 MB.', 'warn'); return; }
+            const reader = new FileReader();
+            reader.onload = e => {
+                const base64 = e.target.result.split(',')[1];
+                pendingImage = { base64, mime: file.type, name: file.name };
+                document.getElementById('imgPreviewThumb').src = e.target.result;
+                document.getElementById('imgPreviewName').textContent = file.name;
+                document.getElementById('imgPreviewStrip').style.display = 'block';
+                document.getElementById('imgUploadBtn').classList.add('has-image');
+                document.getElementById('chatInput').placeholder = 'Add a question about this image (optional)…';
+            };
+            reader.readAsDataURL(file);
+            event.target.value = '';
+        }
+
+        function clearImagePreview() {
+            pendingImage = null;
+            document.getElementById('imgPreviewStrip').style.display = 'none';
+            document.getElementById('imgPreviewThumb').src = '';
+            document.getElementById('imgUploadBtn').classList.remove('has-image');
+            document.getElementById('chatInput').placeholder = 'Ask about any topic or share a homework problem...';
+        }
+
         async function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const msg = input.value.trim();
-            if (!msg || state.isChatting) return;
+            const input   = document.getElementById('chatInput');
+            const msg     = input.value.trim();
+            const imgSnap = pendingImage;
+            if (!msg && !imgSnap || state.isChatting) return;
 
             input.value = '';
             autoResize(input);
-            addUserMessage(msg);
+            clearImagePreview();
+            addUserMessage(msg, imgSnap);
             state.sessionMsgs++;
             document.getElementById('sessionMsgs').textContent = state.sessionMsgs;
 
             if (state.currentTopic) {
-                if (!state.weakTopics[state.currentTopic]) state.weakTopics[state.currentTopic] = { views: 0, aiQueries: 0, subject: state.currentSubject, grade: state.currentGrade, scores: [] };
+                if (!state.weakTopics[state.currentTopic]) state.weakTopics[state.currentTopic] = { views: 0, aiQueries: 0, avgScore: 60 };
                 state.weakTopics[state.currentTopic].aiQueries++;
-                localStorage.setItem('weakTopics', JSON.stringify(state.weakTopics));
+                // Record to real analytics DB
+                const subjectEl2 = document.getElementById('subjectSelect');
+                const subjectName2 = subjectEl2 ? subjectEl2.options[subjectEl2.selectedIndex].text : 'General';
+                recordAIQuery(state.currentTopic, subjectName2);
             }
 
             state.isChatting = true;
@@ -4535,49 +4786,89 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             const typingId = addTypingIndicator();
 
             try {
-                const messages = buildMessages(msg);
-                const reply = await callAIAPI({ system: currentSystemPrompt, messages });
+                const messages = buildMessages(msg, imgSnap || null);
+                const reply = await callClaudeAPI({ system: currentSystemPrompt, messages });
                 removeTypingIndicator(typingId);
                 addAIMessage(reply);
-                state.aiHistory.push({ role: 'user', content: msg });
+                state.aiHistory.push({ role: 'user', content: msg || '[photo uploaded]' });
                 state.aiHistory.push({ role: 'assistant', content: reply });
                 if (state.aiHistory.length > 20) state.aiHistory = state.aiHistory.slice(-20);
                 localStorage.setItem('aiHistory', JSON.stringify(state.aiHistory));
-                addXP(5);
+                addXP(5, currentLang === 'th' ? '+5 XP — ส่งคำถาม 💬' : '+5 XP — Message sent 💬');
                 state.sessionXP += 5;
                 document.getElementById('sessionXP').textContent = state.sessionXP;
             } catch (e) {
                 removeTypingIndicator(typingId);
-                addAIMessage(currentLang === 'th'
-                    ? '❌ เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง 🔧'
-                    : "❌ Connection error. Please try again! 🔧");
+                const isNetErr = e.message === 'NETWORK_ERROR'
+                    || e.message.includes('Failed to fetch')
+                    || e.message.includes('NetworkError')
+                    || e.message.includes('ERR_CONNECTION_REFUSED');
+                if (isNetErr) {
+                    addAIMessage(currentLang === 'th'
+                        ? '❌ ไม่สามารถเชื่อมต่อ server ได้\n\nกรุณาตรวจสอบว่าคุณรัน **node server.js** ใน folder โปรเจกต์ และ server ทำงานอยู่ที่ localhost:3000'
+                        : '❌ Cannot reach the backend server.\n\nPlease make sure you ran **node server.js** in your project folder — the server must be running on localhost:3000');
+                } else {
+                    addAIMessage(currentLang === 'th'
+                        ? `❌ เกิดข้อผิดพลาด: ${e.message}`
+                        : `❌ Error: ${e.message}`);
+                }
             }
 
             state.isChatting = false;
             document.getElementById('sendBtn').disabled = false;
         }
 
-        function buildMessages(newMsg) {
-            return [...state.aiHistory.slice(-8), { role: 'user', content: newMsg }];
+        function buildMessages(newMsg, img) {
+            const history = state.aiHistory.slice(-8);
+            let content;
+            if (img) {
+                content = [
+                    { type: 'image', source: { type: 'base64', media_type: img.mime, data: img.base64 } },
+                    { type: 'text', text: newMsg || 'Please help me with this homework problem in the image. Guide me step by step without giving the direct answer.' }
+                ];
+            } else {
+                content = newMsg;
+            }
+            return [...history, { role: 'user', content }];
         }
 
-        function addUserMessage(text) {
+        function addUserMessage(text, img) {
             const chat = document.getElementById('chatMessages');
-            const div = document.createElement('div');
+            const div  = document.createElement('div');
             div.className = 'msg user';
-            div.innerHTML = `<div class="msg-avatar">👤</div><div class="msg-bubble">${escapeHtml(text)}</div>`;
+            let inner = '';
+            if (img) inner += `<img class="msg-img" src="data:${img.mime};base64,${img.base64}" alt="homework photo">`;
+            if (text) inner += escapeHtml(text);
+            div.innerHTML = `<div class="msg-avatar">👤</div><div class="msg-bubble">${inner}</div>`;
             chat.appendChild(div);
             chat.scrollTop = chat.scrollHeight;
         }
 
+        // blank registry: id → { hint, answer, attempts }
+        const blankRegistry = {};
+
         function addAIMessage(text) {
             const chat = document.getElementById('chatMessages');
-            const div = document.createElement('div');
+            const div  = document.createElement('div');
             div.className = 'msg';
-            let processed = escapeHtml(text).replace(/\[BLANK:\s*([^\]]+)\]/g, (_, hint) => {
-                const id = 'blank_' + Math.random().toString(36).substr(2, 6);
-                return `<input class="blank-input" id="${id}" placeholder="${hint}" onkeydown="checkBlank(event, '${id}')">`;
+
+            // Parse [BLANK: hint | answer] or [BLANK: hint]
+            let processed = escapeHtml(text).replace(/\[BLANK:\s*([^\]]+?)\]/g, (_, inner) => {
+                const pipe   = inner.lastIndexOf('|');
+                const hint   = (pipe >= 0 ? inner.slice(0, pipe) : inner).trim();
+                const answer = (pipe >= 0 ? inner.slice(pipe + 1) : '').trim();
+                const id     = 'bl_' + Math.random().toString(36).substr(2, 8);
+                blankRegistry[id] = { hint, answer, attempts: 0 };
+                return (
+                    `<span class="blank-wrap" id="wrap_${id}">` +
+                    `<input class="blank-input" id="${id}" placeholder="${currentLang==='th'?'พิมพ์คำตอบ...':'Type your answer...'}" autocomplete="off" ` +
+                        `onkeydown="if(event.key==='Enter'){event.preventDefault();submitBlank('${id}');}">` +
+                    `<button class="blank-check-btn" id="checkbtn_${id}" onclick="submitBlank('${id}')">Check ✓</button>` +
+                    `<span class="blank-status-badge" id="badge_${id}" style="display:none"></span>` +
+                    `</span>`
+                );
             });
+
             processed = processed.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
             processed = processed.replace(/\n/g, '<br>');
             div.innerHTML = `<div class="msg-avatar">🎓</div><div class="msg-bubble">${processed}</div>`;
@@ -4585,13 +4876,315 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             chat.scrollTop = chat.scrollHeight;
         }
 
-        function checkBlank(event, id) {
-            if (event.key !== 'Enter') return;
+        async function submitBlank(id) {
             const input = document.getElementById(id);
-            if (!input.value.trim()) return;
+            const btn   = document.getElementById('checkbtn_' + id);
+            const badge = document.getElementById('badge_' + id);
+            if (!input || input.disabled) return;
+            const ans = input.value.trim();
+            if (!ans) { input.focus(); return; }
+
+            const reg = blankRegistry[id];
+            if (!reg) return;
+            reg.attempts = (reg.attempts || 0) + 1;
+
+            // ── Disable while checking ────────────────────────────
+            input.disabled = true;
+            btn.disabled   = true;
+            btn.textContent = '…';
+            badge.style.display = 'none';
+
+            try {
+                // ── Always use AI for flexible semantic validation ──
+                // (not exact string match — "20 m/s", "20", "twenty" should all pass)
+                const ctx = state.aiHistory.slice(-6)
+                    .map(m => `${m.role}: ${typeof m.content === 'string' ? m.content : '[image]'}`)
+                    .join('\n');
+
+                const storedAns = reg.answer ? `The expected answer is: "${reg.answer}". Accept any equivalent form (different units, simplified, written differently).` : '';
+
+                const vPrompt =
+`You are checking a student's fill-in-the-blank answer in a tutoring session.
+
+Conversation context:
+${ctx}
+
+Blank hint shown to student: "${reg.hint}"
+${storedAns}
+Student's answer: "${ans}"
+
+Be FLEXIBLE and GENEROUS — accept the answer if it is mathematically/conceptually equivalent, even if:
+- The wording differs (e.g. "2x" vs "2·x" vs "two x")
+- Units are omitted but the number is correct
+- There are minor spelling differences
+- The student used an equivalent expression
+
+Reply ONLY with valid JSON, nothing else:
+{"correct": true/false, "feedback": "one warm short sentence (praise if correct, gentle if wrong — DO NOT reveal the answer)", "hint": "if wrong: a clear 1-2 sentence step-by-step hint pointing toward the answer WITHOUT giving it; if correct: empty string"}`;
+
+                const raw = await callClaudeAPI({ messages: [{ role: 'user', content: vPrompt }], max_tokens: 200 });
+                let parsed;
+                try { parsed = JSON.parse(raw.replace(/```json|```/g, '').trim()); }
+                catch { parsed = { correct: false, feedback: '', hint: reg.hint }; }
+
+                if (parsed.correct) {
+                    doMarkCorrect(id, input, btn, badge);
+                } else {
+                    // Store the AI-generated hint for this blank
+                    reg.lastHint = parsed.hint || reg.hint || 'Try reviewing the relevant formula.';
+
+                    input.disabled = false;
+                    btn.disabled   = false;
+                    btn.textContent = 'Check ✓';
+                    doMarkWrong(input, badge, reg.attempts);
+
+                    // Every 3 wrong attempts → ask if they want a hint
+                    if (reg.attempts % 3 === 0) {
+                        const hintsGiven = reg.hintsGiven || 0;
+                        if (hintsGiven >= 3) {
+                            // Already had 3+ hints and still wrong → offer the answer
+                            setTimeout(() => showRevealAnswerDialog(id, reg), 350);
+                        } else {
+                            setTimeout(() => showHintAskDialog(id, reg.lastHint, reg.attempts), 350);
+                        }
+                    }
+                }
+            } catch (e) {
+                // Network/parse error — re-enable and show fallback
+                input.disabled = false;
+                btn.disabled   = false;
+                btn.textContent = 'Check ✓';
+                doMarkWrong(input, badge, reg.attempts);
+                if (reg.attempts % 3 === 0) {
+                    setTimeout(() => showHintAskDialog(id, reg.hint || 'Review the relevant formula.', reg.attempts), 350);
+                }
+            }
+        }
+
+        function doMarkCorrect(id, input, btn, badge) {
+            input.disabled = true;
+            input.classList.remove('wrong');
             input.classList.add('correct');
-            addXP(10);
-            showToast('Great answer! +10 XP 🎉', 'success');
+            btn.style.display = 'none';
+            badge.className = 'blank-status-badge correct';
+            badge.innerHTML = '✅ Correct!';
+            badge.style.display = 'inline-flex';
+            addXP(10, currentLang === 'th' ? '+10 XP — ตอบถูก! ✅' : '+10 XP — Correct answer! ✅');
+            state.sessionXP += 10;
+            document.getElementById('sessionXP').textContent = state.sessionXP;
+        }
+
+        function doMarkWrong(input, badge, attempts) {
+            input.classList.remove('correct');
+            input.classList.add('wrong');
+            badge.className = 'blank-status-badge wrong';
+            badge.innerHTML = `✗ Incorrect — attempt ${attempts}`;
+            badge.style.display = 'inline-flex';
+        }
+
+        // ── "Want to see the answer?" popup (after 3+ hints) ─────
+        let _pendingRevealId = '';
+        let _pendingRevealReg = null;
+
+        function showRevealAnswerDialog(blankId, reg) {
+            if (document.getElementById('hintDialogOverlay')) return;
+            _pendingRevealId  = blankId;
+            _pendingRevealReg = reg;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'hint-dialog-overlay';
+            overlay.id = 'hintDialogOverlay';
+            const th = currentLang === 'th';
+
+            overlay.innerHTML = `
+                <div class="hint-dialog-box">
+                    <div class="hint-dialog-icon">😅</div>
+                    <div class="hint-dialog-title">${th ? 'ยังไม่ได้คำตอบเลย?' : 'Still not getting it?'}</div>
+                    <div class="hint-dialog-sub">
+                        ${th
+                            ? `คุณได้รับคำใบ้ไปหลายครั้งแล้ว<br>ต้องการดูคำตอบที่ถูกต้องไหม?`
+                            : `You've received several hints and made <strong>${reg.attempts} attempts</strong>.<br>Would you like to see the correct answer?`}
+                    </div>
+                    <div class="hint-dialog-btns">
+                        <button class="hint-btn-yes" id="hintBtnYes" style="background:var(--accent2);color:#0d0f1a">
+                            👁 ${th ? 'ใช่ ขอดูคำตอบ' : 'Yes, show the answer'}
+                        </button>
+                        <button class="hint-btn-no" id="hintBtnNo">
+                            💪 ${th ? 'ไม่ ลองต่อ' : "No, keep trying"}
+                        </button>
+                    </div>
+                </div>`;
+
+            overlay.addEventListener('click', e => { if (e.target === overlay) dismissHintDialog(); });
+            document.body.appendChild(overlay);
+            document.getElementById('hintBtnYes').addEventListener('click', revealAnswer);
+            document.getElementById('hintBtnNo').addEventListener('click', dismissHintDialog);
+        }
+
+        function revealAnswer() {
+            dismissHintDialog();
+            const reg   = _pendingRevealReg;
+            const id    = _pendingRevealId;
+            const input = document.getElementById(id);
+            const btn   = document.getElementById('checkbtn_' + id);
+            const badge = document.getElementById('badge_' + id);
+            if (!reg || !input) return;
+
+            // Show the answer — use stored answer or ask AI to reveal it via a message
+            const answerToShow = reg.answer || reg.lastHint || reg.hint;
+
+            // Disable the input and mark it answered (but NOT as correct — they were shown it)
+            input.disabled = true;
+            input.classList.remove('wrong', 'correct');
+            input.style.borderColor = 'var(--accent)';
+            input.style.color = 'var(--text2)';
+            if (btn) btn.style.display = 'none';
+            if (badge) {
+                badge.className = 'blank-status-badge';
+                badge.style.background = 'rgba(108,99,255,0.15)';
+                badge.style.color = 'var(--accent)';
+                badge.innerHTML = reg.answer
+                    ? `📖 Answer: ${escapeHtml(reg.answer)}`
+                    : `📖 ${currentLang === 'th' ? 'คำตอบถูกแสดงใน AI Chat' : 'See AI chat for the answer'}`;
+                badge.style.display = 'inline-flex';
+            }
+
+            // If no stored answer, ask AI to reveal it in the chat
+            if (!reg.answer) {
+                const revealMsg = currentLang === 'th'
+                    ? `นักเรียนพยายามหลายครั้งแล้ว กรุณาเฉลยคำตอบที่ถูกต้องสำหรับช่องว่างนี้ (คำใบ้: ${reg.hint})`
+                    : `The student has made many attempts. Please reveal the correct answer for this blank (hint: ${reg.hint}). Explain why that is the answer in one sentence.`;
+                addAIMessage(`📖 **Answer revealed:** Let me explain...\n\n*(Asking AI for the answer...)*`);
+                callClaudeAPI({
+                    system: currentSystemPrompt,
+                    messages: [...state.aiHistory.slice(-4), { role: 'user', content: revealMsg }],
+                    max_tokens: 150
+                }).then(reply => {
+                    // Replace last AI message with real answer
+                    const msgs = document.querySelectorAll('.msg:not(.user)');
+                    const last = msgs[msgs.length - 1];
+                    if (last) {
+                        const bubble = last.querySelector('.msg-bubble');
+                        if (bubble) {
+                            let r = escapeHtml(reply).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                            bubble.innerHTML = '📖 <strong>' + (currentLang === 'th' ? 'เฉลยคำตอบ:' : 'Answer revealed:') + '</strong><br>' + r;
+                        }
+                    }
+                }).catch(() => {});
+            }
+
+            showToast(currentLang === 'th' ? '📖 แสดงคำตอบแล้ว' : '📖 Answer revealed', 'info');
+        }
+
+        // ── "Want a hint?" dialog after 3 fails ──────────────────
+        // Store pending hint text safely — avoids inline HTML escaping issues
+        let _pendingHintText = '';
+        let _pendingHintBlankId = '';
+
+        function showHintAskDialog(blankId, hintText, attempts) {
+            if (document.getElementById('hintDialogOverlay')) return;
+            const input = document.getElementById(blankId);
+            if (!input || !input.classList.contains('wrong')) return;
+
+            // Store hint text in a variable — never embed in onclick attribute
+            _pendingHintText   = hintText || 'Review the formula and try again.';
+            _pendingHintBlankId = blankId;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'hint-dialog-overlay';
+            overlay.id = 'hintDialogOverlay';
+            const th = currentLang === 'th';
+
+            overlay.innerHTML = `
+                <div class="hint-dialog-box">
+                    <div class="hint-dialog-icon">🤔</div>
+                    <div class="hint-dialog-title">${th ? 'ต้องการคำใบ้ไหม?' : 'Would you like a hint?'}</div>
+                    <div class="hint-dialog-sub">
+                        ${th
+                            ? `คุณตอบผิดไปแล้ว <strong>${attempts} ครั้ง</strong><br>ต้องการความช่วยเหลือไหม?`
+                            : `You've made <strong>${attempts} incorrect attempt${attempts !== 1 ? 's' : ''}</strong>.<br>Would you like a hint to guide you?`}
+                    </div>
+                    <div class="hint-dialog-btns">
+                        <button class="hint-btn-yes" id="hintBtnYes">
+                            💡 ${th ? 'ใช่ ขอคำใบ้' : 'Yes, show hint'}
+                        </button>
+                        <button class="hint-btn-no" id="hintBtnNo">
+                            💪 ${th ? 'ลองเองต่อ' : "No, I'll keep trying"}
+                        </button>
+                    </div>
+                </div>`;
+
+            // Attach listeners via JS (not inline onclick) — avoids escaping problems
+            overlay.addEventListener('click', e => { if (e.target === overlay) dismissHintDialog(); });
+            document.body.appendChild(overlay);
+
+            // Wire buttons after appending so getElementById works
+            document.getElementById('hintBtnYes').addEventListener('click', acceptHint);
+            document.getElementById('hintBtnNo').addEventListener('click',  dismissHintDialog);
+        }
+
+        function dismissHintDialog() {
+            const el = document.getElementById('hintDialogOverlay');
+            if (el) el.remove();
+        }
+
+        function acceptHint() {
+            dismissHintDialog();
+            // Track how many hints this blank has received
+            if (_pendingHintBlankId && blankRegistry[_pendingHintBlankId]) {
+                blankRegistry[_pendingHintBlankId].hintsGiven = (blankRegistry[_pendingHintBlankId].hintsGiven || 0) + 1;
+            }
+            showHintSlider(_pendingHintText);
+        }
+
+        // ── Slide-up hint panel ───────────────────────────────────
+        let _hintPanel = null, _hintTimer = null;
+
+        function showHintSlider(hintText) {
+            // Create panel once, reuse it
+            if (!_hintPanel) {
+                _hintPanel = document.createElement('div');
+                _hintPanel.className = 'hint-panel';
+                document.body.appendChild(_hintPanel);
+            }
+            clearTimeout(_hintTimer);
+
+            const th = currentLang === 'th';
+
+            // Split on sentence boundaries for numbered steps (up to 3)
+            const raw = (hintText || 'Review the relevant formula and try again.').trim();
+            const steps = raw.split(/(?<=[.!?])\s+/).filter(s => s.trim()).slice(0, 3);
+            // Fallback: if no sentence split happened, show as one step
+            const stepsHTML = (steps.length ? steps : [raw]).map((s, i) => `
+                <div class="hint-step">
+                    <div class="hint-num">${i + 1}</div>
+                    <div style="font-size:14px;line-height:1.65;color:var(--text)">${escapeHtml(s.trim())}</div>
+                </div>`).join('');
+
+            _hintPanel.innerHTML = `
+                <div class="hint-panel-hdr">
+                    <span>💡 ${th ? 'คำใบ้' : 'Hint'}</span>
+                    <button class="hint-close-x" id="hintCloseBtn">✕</button>
+                </div>
+                <div class="hint-panel-body">
+                    ${stepsHTML}
+                    <div style="margin-top:12px;padding:10px 12px;background:rgba(108,99,255,0.08);border-radius:8px;font-size:12px;color:var(--text2)">
+                        ${th ? '💬 ยังติดอยู่? พิมพ์ถาม AI Tutor เพื่อให้อธิบายเพิ่มเติมได้เลย' : '💬 Still stuck? Type a question to the AI Tutor for a deeper explanation.'}
+                    </div>
+                </div>`;
+
+            _hintPanel.classList.add('open');
+
+            // Wire close button via JS
+            document.getElementById('hintCloseBtn').addEventListener('click', closeHintSlider);
+
+            // Auto-close after 15 s
+            _hintTimer = setTimeout(closeHintSlider, 15000);
+        }
+
+        function closeHintSlider() {
+            if (_hintPanel) _hintPanel.classList.remove('open');
+            clearTimeout(_hintTimer);
         }
 
         let typingCounter = 0;
@@ -4626,56 +5219,6 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             el.style.height = Math.min(el.scrollHeight, 120) + 'px';
         }
 
-        // ==================== QUIZ TOPIC PICKER ====================
-        let selectedQuizTopic = '';
-
-        function updateQuizTopics() {
-            const grade = document.getElementById('quizGrade').value;
-            const subject = document.getElementById('quizSubject').value;
-            const topics = curriculum[grade]?.[subject] || [];
-            const grid = document.getElementById('quizTopicGrid');
-            const customInput = document.getElementById('quizTopicCustom');
-            selectedQuizTopic = '';
-            customInput.value = '';
-            grid.innerHTML = topics.map(t =>
-                `<button onclick="selectQuizTopic('${t.replace(/'/g,"\\'")}',this)"
-                    style="padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface2);color:var(--text);font-size:12px;cursor:pointer;transition:all .18s;white-space:nowrap"
-                >${t}</button>`
-            ).join('');
-        }
-
-        function selectQuizTopic(topic, btn) {
-            selectedQuizTopic = topic;
-            document.getElementById('quizTopicCustom').value = topic;
-            document.querySelectorAll('#quizTopicGrid button').forEach(b => {
-                b.style.background = 'var(--surface2)';
-                b.style.color = 'var(--text)';
-                b.style.borderColor = 'var(--border)';
-            });
-            btn.style.background = 'var(--accent)';
-            btn.style.color = '#fff';
-            btn.style.borderColor = 'var(--accent)';
-        }
-
-        function syncCustomTopic(val) {
-            selectedQuizTopic = val;
-            document.querySelectorAll('#quizTopicGrid button').forEach(b => {
-                b.style.background = 'var(--surface2)';
-                b.style.color = 'var(--text)';
-                b.style.borderColor = 'var(--border)';
-            });
-        }
-
-        function clearQuizTopic() {
-            selectedQuizTopic = '';
-            document.getElementById('quizTopicCustom').value = '';
-            document.querySelectorAll('#quizTopicGrid button').forEach(b => {
-                b.style.background = 'var(--surface2)';
-                b.style.color = 'var(--text)';
-                b.style.borderColor = 'var(--border)';
-            });
-        }
-
         // ==================== QUIZ ====================
         let quizData = [];
 
@@ -4687,20 +5230,32 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             const grade = document.getElementById('quizGrade').value;
             const subjectEl = document.getElementById('quizSubject');
             const subject = subjectEl.options[subjectEl.selectedIndex].text;
+            const topicEl  = document.getElementById('quizTopic');
+            const chosenTopic = topicEl.value.trim(); // "" = all topics
             const count = parseInt(document.getElementById('quizCount').value);
-            const topic = selectedQuizTopic || state.currentTopic || subject;
+            const diff = document.getElementById('quizDifficulty').value;
+
+            // Store for analytics tracking
+            state.currentQuizSubject = subject;
+            state.currentQuizTopic   = chosenTopic || 'Mixed — ' + subject;
+            state.currentQuizGrade   = grade;
+
+            const topicInstruction = chosenTopic
+                ? `Focus ONLY on the topic: "${chosenTopic}".`
+                : `Cover a variety of topics from the ${subject} curriculum.`;
+
+            const prompt = `Generate ${count} multiple-choice quiz questions for Grade ${grade} ${subject} students (Thai curriculum, ${diff} difficulty). ${topicInstruction}
+
+Return ONLY valid JSON array. No markdown, no explanation. Format:
+[{"question":"...","options":["A) ...","B) ...","C) ...","D) ..."],"correct":0,"explanation":"..."}]
+
+correct is the 0-based index of the correct option. Make questions curriculum-aligned and educational.`;
 
             try {
-                const res = await fetch('http://localhost:3000/api/generate-quiz', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ subject, topic, grade, numQuestions: count })
-                });
-                if (!res.ok) throw new Error('Failed to generate quiz');
-                const data = await res.json();
-                quizData = data.quiz;
+                let raw = await callClaudeAPI({ messages: [{ role: 'user', content: prompt }] });
+                raw = raw.replace(/```json|```/g, '').trim();
+                quizData = JSON.parse(raw);
             } catch (e) {
-                console.error(e);
                 quizData = getFallbackQuestions(subject, grade);
             }
 
@@ -4765,7 +5320,10 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             const fb = document.getElementById('feedbackBox');
             fb.className = 'feedback-box show ' + (isCorrect ? 'correct' : 'wrong');
             fb.innerHTML = isCorrect ? `${t('correctFb')} ${q.explanation}` : `${t('wrongFb')} ${q.explanation}`;
-            if (isCorrect) { state.correctAnswers++; addXP(15); }
+            if (isCorrect) {
+                state.correctAnswers++;
+                addXP(15, currentLang === 'th' ? '+15 XP — ตอบถูก! ⚡' : '+15 XP — Correct! ⚡');
+            }
             document.getElementById('nextBtn').innerHTML = t('nextQ');
             document.getElementById('nextBtn').style.display = 'flex';
         }
@@ -4803,23 +5361,22 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             document.getElementById('resultTitle').textContent = title;
             document.getElementById('resultSub').textContent = `${t('scored')} ${state.correctAnswers} ${t('outOf')} ${total} ${t('questions')}`;
             updateStreak();
-            addXP(xpEarned);
-            const subjectEl2 = document.getElementById('quizSubject');
-            const quizSubjectName = subjectEl2 ? subjectEl2.options[subjectEl2.selectedIndex].text : (state.currentSubject || 'Unknown');
-            const quizGradeVal = document.getElementById('quizGrade')?.value || state.currentGrade;
-            const quizTopicName = selectedQuizTopic || state.currentTopic || quizSubjectName;
-            state.quizHistory.push({ date: new Date().toISOString(), score: pct, correct: state.correctAnswers, total, subject: quizSubjectName, topic: quizTopicName, grade: quizGradeVal });
-            if (state.quizHistory.length > 100) state.quizHistory.shift();
-            localStorage.setItem('quizHistory', JSON.stringify(state.quizHistory));
-            if (quizTopicName) {
-                if (!state.weakTopics[quizTopicName]) state.weakTopics[quizTopicName] = { views: 0, aiQueries: 0, subject: quizSubjectName, grade: quizGradeVal, scores: [] };
-                if (!state.weakTopics[quizTopicName].scores) state.weakTopics[quizTopicName].scores = [];
-                state.weakTopics[quizTopicName].scores.push(pct);
-                state.weakTopics[quizTopicName].subject = quizSubjectName;
-                state.weakTopics[quizTopicName].grade = quizGradeVal;
-                if (state.weakTopics[quizTopicName].scores.length > 20) state.weakTopics[quizTopicName].scores.shift();
-                localStorage.setItem('weakTopics', JSON.stringify(state.weakTopics));
+            // XP already awarded per question in selectOption — show summary toast
+            if (xpEarned > 0) {
+                setTimeout(() => showXPPop(
+                    currentLang === 'th'
+                        ? `+${xpEarned} XP รวม — จบแบบทดสอบ! 🏆`
+                        : `+${xpEarned} XP total earned this quiz! 🏆`
+                ), 600);
             }
+            state.quizHistory.push({ date: new Date().toISOString(), score: pct, correct: state.correctAnswers, total });
+            if (state.quizHistory.length > 50) state.quizHistory.shift();
+            localStorage.setItem('quizHistory', JSON.stringify(state.quizHistory));
+            // Record into real analytics DB
+            const qTopic   = state.currentQuizTopic   || 'Mixed Quiz';
+            const qSubject = state.currentQuizSubject  || 'General';
+            const qGrade   = state.currentQuizGrade    || state.currentGrade;
+            recordQuizResult(qTopic, qSubject, qGrade, state.correctAnswers, total);
             refreshAnalytics();
         }
 
@@ -4877,92 +5434,376 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             ).join('');
         }
 
-        function addXP(amount) {
+        function addXP(amount, label) {
+            if (!amount || amount <= 0) return;
             state.xp += amount;
             localStorage.setItem('xp', state.xp);
             renderStreak();
+            // Animate XP bar flash
+            const bar = document.getElementById('xpBarFill');
+            if (bar) {
+                bar.style.transition = 'width 0.6s cubic-bezier(.4,0,.2,1), box-shadow 0.3s';
+                bar.style.boxShadow = '0 0 14px rgba(0,212,170,0.7)';
+                setTimeout(() => { bar.style.boxShadow = 'none'; }, 800);
+            }
+            // Floating XP pop above the XP bar (visible in quiz tab and AI tab)
+            if (label) showXPPop(label);
+        }
+
+        let _xpPopTimer = null;
+        function showXPPop(label) {
+            // Remove old one if exists
+            const old = document.getElementById('xpPop');
+            if (old) old.remove();
+            clearTimeout(_xpPopTimer);
+
+            const pop = document.createElement('div');
+            pop.id = 'xpPop';
+            pop.textContent = label;
+            pop.style.cssText = `
+                position:fixed;
+                bottom:80px;
+                right:24px;
+                background:linear-gradient(135deg,var(--accent),var(--accent2));
+                color:white;
+                font-family:'Sora',sans-serif;
+                font-size:14px;
+                font-weight:700;
+                padding:10px 18px;
+                border-radius:24px;
+                z-index:9999;
+                pointer-events:none;
+                box-shadow:0 4px 20px rgba(108,99,255,0.4);
+                animation:xpPopAnim 0.4s cubic-bezier(.175,.885,.32,1.275) forwards;
+            `;
+            document.body.appendChild(pop);
+
+            // Inject keyframes once
+            if (!document.getElementById('xpPopStyle')) {
+                const st = document.createElement('style');
+                st.id = 'xpPopStyle';
+                st.textContent = `
+                    @keyframes xpPopAnim {
+                        0%   { opacity:0; transform:translateY(20px) scale(0.8); }
+                        60%  { opacity:1; transform:translateY(-6px) scale(1.05); }
+                        100% { opacity:1; transform:translateY(0) scale(1); }
+                    }
+                    @keyframes xpPopFade {
+                        from { opacity:1; transform:translateY(0); }
+                        to   { opacity:0; transform:translateY(-24px); }
+                    }
+                `;
+                document.head.appendChild(st);
+            }
+
+            _xpPopTimer = setTimeout(() => {
+                if (pop.parentNode) {
+                    pop.style.animation = 'xpPopFade 0.4s ease forwards';
+                    setTimeout(() => pop.remove(), 400);
+                }
+            }, 1800);
         }
 
         // ==================== ANALYTICS ====================
-        // ── analytics helpers ─────────────────────────────────────────────────
-        const SUBJ_COLORS = { Mathematics:'#6c63ff', Physics:'#ff6584', Chemistry:'#ffb347', Biology:'#00d4aa', English:'#8b5cf6', 'Thai Language':'#06b6d4', 'Social Studies':'#10b981', Science:'#f59e0b' };
-        function sColor(n) { for (const k of Object.keys(SUBJ_COLORS)) { if ((n||'').toLowerCase().includes(k.toLowerCase())) return SUBJ_COLORS[k]; } return '#94a3b8'; }
-
-        function getSubjectScores() {
-            const map = {};
-            (state.quizHistory||[]).forEach(h => { const s=h.subject||'Unknown'; if(!map[s])map[s]=[]; map[s].push(h.score); });
-            return Object.entries(map).map(([name,scores])=>({ name, color:sColor(name), score:Math.round(scores.reduce((a,b)=>a+b,0)/scores.length), count:scores.length })).sort((a,b)=>b.score-a.score);
+        // ── Quiz topic selector ──────────────────────────────────────
+        function updateQuizTopics() {
+            const grade   = document.getElementById('quizGrade').value;
+            const subject = document.getElementById('quizSubject').value;
+            const topics  = curriculum[grade]?.[subject] || [];
+            const sel     = document.getElementById('quizTopic');
+            const th      = currentLang === 'th';
+            sel.innerHTML = `<option value="">${th ? 'ทุกหัวข้อในวิชา' : 'All topics in subject'}</option>` +
+                topics.map(t => `<option value="${t}">${t}</option>`).join('');
         }
 
-        function getTopicData() {
-            return Object.entries(state.weakTopics||{}).map(([name,d])=>{
-                const sc=d.scores||[]; const avg=sc.length?Math.round(sc.reduce((a,b)=>a+b,0)/sc.length):null;
-                return { name, aiQueries:d.aiQueries||0, subject:d.subject||'—', grade:d.grade||'—', avgScore:avg, quizCount:sc.length };
-            }).filter(d=>d.aiQueries>0||d.quizCount>0);
+        // ── Real-data analytics helpers ──────────────────────────────────
+        // analyticsDB stores per-topic stats: { subject, quizzes:[{score,total,date}], aiQueries, views }
+        function loadAnalyticsDB() {
+            try { return JSON.parse(localStorage.getItem('analyticsDB') || '{}'); } catch { return {}; }
+        }
+        function saveAnalyticsDB(db) {
+            localStorage.setItem('analyticsDB', JSON.stringify(db));
         }
 
-        function updateOverviewStats() {
-            const qh=state.quizHistory||[];
-            const avg=qh.length?Math.round(qh.reduce((a,b)=>a+b.score,0)/qh.length):null;
-            const totalAIQ=Object.values(state.weakTopics||{}).reduce((a,d)=>a+(d.aiQueries||0),0);
-            const concerns=getTopicData().filter(d=>(d.avgScore!==null&&d.avgScore<60)||d.aiQueries>=5).length;
-            document.getElementById('totalStudents').textContent=qh.length||0;
-            document.getElementById('avgScore').textContent=avg!==null?avg+'%':'—';
-            document.getElementById('aiQueries').textContent=totalAIQ;
-            document.getElementById('concernTopics').textContent=concerns;
+        // Called when a quiz finishes — records per-topic result
+        function recordQuizResult(topic, subject, grade, score, total) {
+            const db = loadAnalyticsDB();
+            if (!db[topic]) db[topic] = { subject, grade, quizzes: [], aiQueries: 0, views: 0 };
+            db[topic].subject = subject;
+            db[topic].grade   = grade;
+            db[topic].quizzes.push({ score, total, date: new Date().toISOString() });
+            if (db[topic].quizzes.length > 50) db[topic].quizzes.shift();
+            saveAnalyticsDB(db);
         }
 
-        function refreshAnalytics() { updateOverviewStats(); renderSubjectChart(); renderAITopicChart(); renderConcernTable(); renderInsights(); }
-
-        function renderSubjectChart() {
-            const data=getSubjectScores(); const el=document.getElementById('subjectChart');
-            if(!data.length){ el.innerHTML='<p style="color:var(--text2);font-size:13px;padding:20px 0;text-align:center">No quiz data yet.<br>Complete a quiz to see real subject scores here.</p>'; return; }
-            el.innerHTML=data.map(d=>`<div class="bar-row">
-                <div class="bar-label" title="${d.count} quiz${d.count>1?'zes':''}">${d.name}</div>
-                <div class="bar-track"><div class="bar-fill" style="width:${d.score}%;background:${d.color}"></div></div>
-                <div class="bar-pct" style="color:${d.score<60?'var(--danger)':d.score<75?'var(--warn)':'var(--success)'}">${d.score}%</div>
-            </div>`).join('');
+        // Called when user asks AI about a topic
+        function recordAIQuery(topic, subject) {
+            const db = loadAnalyticsDB();
+            if (!db[topic]) db[topic] = { subject, grade: state.currentGrade, quizzes: [], aiQueries: 0, views: 0 };
+            db[topic].aiQueries = (db[topic].aiQueries || 0) + 1;
+            saveAnalyticsDB(db);
         }
 
-        function renderAITopicChart() {
-            const data=getTopicData().filter(d=>d.aiQueries>0).sort((a,b)=>b.aiQueries-a.aiQueries).slice(0,8); const el=document.getElementById('aiTopicChart');
-            if(!data.length){ el.innerHTML='<p style="color:var(--text2);font-size:13px;padding:20px 0;text-align:center">No AI queries yet.<br>Ask the AI Tutor questions to see topics here.</p>'; return; }
-            const max=Math.max(...data.map(d=>d.aiQueries));
-            el.innerHTML=data.map(d=>`<div class="bar-row">
-                <div class="bar-label" style="font-size:11px">${d.name}</div>
-                <div class="bar-track"><div class="bar-fill" style="width:${(d.aiQueries/max*100).toFixed(1)}%;background:${sColor(d.subject)}"></div></div>
-                <div class="bar-pct">${d.aiQueries}</div>
-            </div>`).join('');
+        // Called when user views a topic
+        function recordTopicView(topic, subject) {
+            const db = loadAnalyticsDB();
+            if (!db[topic]) db[topic] = { subject, grade: state.currentGrade, quizzes: [], aiQueries: 0, views: 0 };
+            db[topic].views = (db[topic].views || 0) + 1;
+            saveAnalyticsDB(db);
         }
 
-        function renderConcernTable() {
-            const all=getTopicData().filter(d=>(d.avgScore!==null&&d.avgScore<75)||d.aiQueries>=3)
-                .sort((a,b)=>{ const ra=(a.avgScore!==null&&a.avgScore<60?2:a.aiQueries>=5?1:0); const rb=(b.avgScore!==null&&b.avgScore<60?2:b.aiQueries>=5?1:0); return rb-ra; });
-            const el=document.getElementById('concernTbody');
-            if(!all.length){ el.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text2);padding:24px">No data yet — complete quizzes and use AI Tutor to see real analytics.</td></tr>'; return; }
-            el.innerHTML=all.map(c=>{
-                const risk=(c.avgScore!==null&&c.avgScore<55)||c.aiQueries>=10?'high':(c.avgScore!==null&&c.avgScore<65)||c.aiQueries>=5?'med':'low';
-                const rec=risk==='high'?'Schedule extra practice':risk==='med'?'Review with more examples':'Monitor progress';
-                const scoreCell=c.avgScore!==null?`<td style="color:${c.avgScore<60?'var(--danger)':c.avgScore<75?'var(--warn)':'var(--success)'};font-weight:600">${c.avgScore}%<br><small style="color:var(--text2);font-weight:400">${c.quizCount} quiz${c.quizCount>1?'zes':''}</small></td>`:`<td style="color:var(--text2)">No quizzes yet</td>`;
-                return `<tr>
-                    <td style="font-weight:500">${c.name}</td><td>${c.subject}</td><td>${c.grade?'G'+c.grade:'—'}</td>
-                    ${scoreCell}<td>${c.aiQueries} quer${c.aiQueries===1?'y':'ies'}</td>
-                    <td><span class="risk-badge risk-${risk}">${risk.toUpperCase()}</span></td>
-                    <td style="color:var(--text2);font-size:12px">${rec}</td>
-                </tr>`;
-            }).join('');
+        // ── Analytics rendering ──────────────────────────────────────────
+        function refreshAnalytics() {
+            const db = loadAnalyticsDB();
+            renderSubjectChart(db);
+            renderAITopicChart(db);
+            renderConcernTable(db);
+            renderInsights(db);
+            renderOverviewStats(db);
         }
 
-        function renderInsights() {
-            const insights=[]; const subjectData=getSubjectScores(); const topicData=getTopicData(); const qh=state.quizHistory||[];
-            subjectData.filter(d=>d.score<60).forEach(d=>insights.push({icon:'⚠️',type:'warn',title:`${d.name} needs attention`,text:`Average score is ${d.score}% across ${d.count} quiz${d.count>1?'zes':''}. Review key topics.`}));
-            topicData.filter(d=>d.aiQueries>=5).sort((a,b)=>b.aiQueries-a.aiQueries).slice(0,2).forEach(d=>insights.push({icon:'🔍',type:'warn',title:`Frequent AI help: ${d.name}`,text:`You asked the AI ${d.aiQueries} times — consider deeper practice here.`}));
-            topicData.filter(d=>d.avgScore!==null&&d.avgScore<60&&d.aiQueries>=3).forEach(d=>insights.push({icon:'🚨',type:'warn',title:`Urgent: ${d.name}`,text:`Score ${d.avgScore}% + ${d.aiQueries} AI queries — needs focused review.`}));
-            subjectData.filter(d=>d.score>=80).forEach(d=>insights.push({icon:'✅',type:'ok',title:`${d.name} — great work!`,text:`Average ${d.score}% across ${d.count} quiz${d.count>1?'zes':''}. Keep it up!`}));
-            if(qh.length){ const avg=Math.round(qh.reduce((a,b)=>a+b.score,0)/qh.length); const totalAI=Object.values(state.weakTopics||{}).reduce((a,d)=>a+(d.aiQueries||0),0); insights.push({icon:'📊',type:'info',title:`${qh.length} quizzes completed`,text:`Overall average: ${avg}%. Total AI queries: ${totalAI}.`}); }
-            const el=document.getElementById('insightsList');
-            if(!insights.length){ el.innerHTML='<div style="color:var(--text2);font-size:13px;padding:12px 0">Complete quizzes and use the AI Tutor to generate real insights.</div>'; return; }
-            el.innerHTML=insights.map(ins=>`<div class="insight-item"><div class="insight-icon ${ins.type}">${ins.icon}</div><div class="insight-text"><h4>${ins.title}</h4><p>${ins.text}</p></div></div>`).join('');
+        function renderOverviewStats(db) {
+            const allQuizzes    = Object.values(db).flatMap(t => t.quizzes || []);
+            const totalQuizzes  = allQuizzes.length;
+            const totalAIQ      = Object.values(db).reduce((s,t) => s + (t.aiQueries||0), 0);
+            const concernCount  = Object.values(db).filter(t => {
+                if (!t.quizzes?.length) return false;
+                const avg = t.quizzes.reduce((s,q) => s+(q.score/q.total*100),0)/t.quizzes.length;
+                return avg < 65;
+            }).length;
+
+            // Quizzes Taken
+            const tsEl = document.getElementById('totalStudents');
+            if (tsEl) tsEl.textContent = totalQuizzes || '0';
+            const tsTrend = document.getElementById('totalStudentsTrend');
+            if (tsTrend) tsTrend.textContent = totalQuizzes
+                ? `${totalQuizzes} session${totalQuizzes!==1?'s':''} recorded`
+                : 'Take a quiz to start tracking';
+
+            // Average Score — computed from real quiz history
+            const avgEl = document.getElementById('avgScore');
+            const avgTrend = document.getElementById('avgScoreTrend');
+            if (totalQuizzes > 0) {
+                const avg = Math.round(allQuizzes.reduce((s,q)=>s+(q.score/q.total*100),0)/totalQuizzes);
+                if (avgEl) { avgEl.textContent = avg+'%'; avgEl.style.color = avg>=70?'var(--success)':avg>=50?'var(--warn)':'var(--danger)'; }
+                if (avgTrend) { avgTrend.textContent = avg>=70?'Good performance 🎉':avg>=50?'Keep practising!':'Needs improvement'; avgTrend.className='stat-trend '+(avg>=70?'trend-up':avg>=50?'':'trend-down'); }
+            } else {
+                if (avgEl) { avgEl.textContent='—'; avgEl.style.color='var(--text3)'; }
+                if (avgTrend) { avgTrend.textContent='No quizzes yet'; avgTrend.style.color='var(--text3)'; }
+            }
+
+            // AI Queries
+            const aiEl = document.getElementById('aiQueries');
+            if (aiEl) aiEl.textContent = totalAIQ || '0';
+            const aiTrend = document.getElementById('aiQueriesTrend');
+            if (aiTrend) aiTrend.textContent = totalAIQ ? `${totalAIQ} question${totalAIQ!==1?'s':''} asked` : 'No AI queries yet';
+
+            // Concern Topics
+            const cEl = document.getElementById('concernTopics');
+            if (cEl) { cEl.textContent = concernCount || '0'; cEl.style.color = concernCount>0?'var(--danger)':'var(--success)'; }
+            const cTrend = document.getElementById('concernTopicsTrend');
+            if (cTrend) cTrend.textContent = concernCount>0 ? `${concernCount} topic${concernCount!==1?'s':''} below 65%` : totalQuizzes?'All topics on track ✅':'—';
+        }
+
+        function renderSubjectChart(db) {
+            const subjectColors = {
+                'Mathematics':'#6c63ff','Physics':'#ff6584','Chemistry':'#ffb347',
+                'Biology':'#00d4aa','English':'#8b5cf6','Thai Language':'#06b6d4',
+                'Social Studies':'#10b981','Science':'#f59e0b'
+            };
+
+            // Aggregate scores by subject from real data
+            const subjectData = {};
+            Object.values(db).forEach(t => {
+                if (!t.quizzes?.length) return;
+                const sub = t.subject || 'Other';
+                if (!subjectData[sub]) subjectData[sub] = { total: 0, count: 0 };
+                t.quizzes.forEach(q => {
+                    subjectData[sub].total += (q.score / q.total * 100);
+                    subjectData[sub].count++;
+                });
+            });
+
+            const entries = Object.entries(subjectData).map(([name, d]) => ({
+                name, score: Math.round(d.total / d.count), color: subjectColors[name] || '#6c63ff'
+            })).sort((a, b) => a.score - b.score);
+
+            const el = document.getElementById('subjectChart');
+            if (!entries.length) {
+                el.innerHTML = `<div style="color:var(--text3);font-size:13px;text-align:center;padding:20px">
+                    📊 No quiz data yet. Take some quizzes to see real subject performance!</div>`;
+                return;
+            }
+            el.innerHTML = entries.map(d =>
+                `<div class="bar-row">
+                    <div class="bar-label">${d.name}</div>
+                    <div class="bar-track"><div class="bar-fill" style="width:${d.score}%;background:${d.color}"></div></div>
+                    <div class="bar-pct" style="color:${d.score < 60 ? 'var(--danger)' : 'var(--text)'}">${d.score}%</div>
+                </div>`
+            ).join('');
+        }
+
+        function renderAITopicChart(db) {
+            const topicColors = ['#ff6584','#ffb347','#6c63ff','#8b5cf6','#00d4aa','#06b6d4','#10b981','#f59e0b'];
+            const entries = Object.entries(db)
+                .filter(([,t]) => (t.aiQueries || 0) > 0)
+                .map(([name, t]) => ({ name, queries: t.aiQueries || 0 }))
+                .sort((a, b) => b.queries - a.queries)
+                .slice(0, 8);
+
+            const el = document.getElementById('aiTopicChart');
+            if (!entries.length) {
+                el.innerHTML = `<div style="color:var(--text3);font-size:13px;text-align:center;padding:20px">
+                    🤖 No AI tutor queries yet. Ask the AI about topics to see data here!</div>`;
+                return;
+            }
+            const max = entries[0].queries;
+            el.innerHTML = entries.map((d, i) =>
+                `<div class="bar-row">
+                    <div class="bar-label" style="font-size:11px">${d.name}</div>
+                    <div class="bar-track"><div class="bar-fill" style="width:${d.queries/max*100}%;background:${topicColors[i%topicColors.length]}"></div></div>
+                    <div class="bar-pct">${d.queries}</div>
+                </div>`
+            ).join('');
+        }
+
+        function renderConcernTable(db) {
+            const concerns = [];
+            Object.entries(db).forEach(([topic, t]) => {
+                if (!t.quizzes?.length && !t.aiQueries) return;
+                const quizzes = t.quizzes || [];
+                const avgScore = quizzes.length
+                    ? Math.round(quizzes.reduce((s,q) => s + (q.score/q.total*100), 0) / quizzes.length)
+                    : null;
+                const aiQ = t.aiQueries || 0;
+
+                // Risk: high if avg < 60 OR very high AI queries (>5), med if avg < 70
+                let risk = 'low';
+                if ((avgScore !== null && avgScore < 60) || aiQ > 5) risk = 'high';
+                else if ((avgScore !== null && avgScore < 70) || aiQ > 2) risk = 'med';
+
+                if (risk !== 'low' || aiQ > 0) {
+                    let rec = 'Keep monitoring';
+                    if (risk === 'high') rec = avgScore !== null ? 'Schedule extra practice' : 'Student needs explanation';
+                    else if (risk === 'med') rec = 'Review worked examples';
+
+                    concerns.push({
+                        topic, subject: t.subject || '—', grade: t.grade || '?',
+                        avgScore, aiQ, risk, rec
+                    });
+                }
+            });
+
+            concerns.sort((a, b) => {
+                const riskOrder = { high: 0, med: 1, low: 2 };
+                return (riskOrder[a.risk] - riskOrder[b.risk]) || (b.aiQ - a.aiQ);
+            });
+
+            const el = document.getElementById('concernTbody');
+            if (!concerns.length) {
+                el.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:20px">
+                    ✅ No concerns yet — take quizzes and ask the AI to generate real data!</td></tr>`;
+                return;
+            }
+            el.innerHTML = concerns.slice(0, 10).map(c =>
+                `<tr>
+                    <td style="font-weight:500">${c.topic}</td>
+                    <td>${c.subject}</td>
+                    <td>G${c.grade}</td>
+                    <td style="color:${c.avgScore === null ? 'var(--text3)' : c.avgScore < 60 ? 'var(--danger)' : c.avgScore < 70 ? 'var(--warn)' : 'var(--success)'};font-weight:600">
+                        ${c.avgScore !== null ? c.avgScore + '%' : '—'}
+                    </td>
+                    <td>${c.aiQ} ${c.aiQ === 1 ? 'query' : 'queries'}</td>
+                    <td><span class="risk-badge risk-${c.risk}">${c.risk.toUpperCase()}</span></td>
+                    <td style="color:var(--text2);font-size:12px">${c.rec}</td>
+                </tr>`
+            ).join('');
+        }
+
+        function renderInsights(db) {
+            const insights = [];
+            const allTopics = Object.entries(db);
+
+            // Find worst-scoring topic
+            const withScores = allTopics
+                .filter(([,t]) => t.quizzes?.length >= 2)
+                .map(([name, t]) => ({
+                    name, avg: Math.round(t.quizzes.reduce((s,q)=>s+(q.score/q.total*100),0)/t.quizzes.length),
+                    subject: t.subject, quizzes: t.quizzes.length
+                }))
+                .sort((a,b) => a.avg - b.avg);
+
+            if (withScores.length && withScores[0].avg < 70) {
+                const worst = withScores[0];
+                insights.push({
+                    icon: '⚠️', type: 'warn',
+                    title: `${worst.name} needs attention`,
+                    text: `Average score of ${worst.avg}% across ${worst.quizzes} quiz attempt${worst.quizzes>1?'s':''}. Consider revisiting the educational content and asking the AI tutor for guided practice.`
+                });
+            }
+
+            // Most AI-queried topic
+            const topAI = allTopics
+                .filter(([,t]) => (t.aiQueries||0) > 0)
+                .sort(([,a],[,b]) => (b.aiQueries||0) - (a.aiQueries||0))[0];
+            if (topAI) {
+                insights.push({
+                    icon: '🔍', type: 'warn',
+                    title: `High AI usage on "${topAI[0]}"`,
+                    text: `${topAI[1].aiQueries} AI tutor queries on this topic suggests it may be challenging. Focus teaching time here or provide additional worked examples.`
+                });
+            }
+
+            // Best performing topic
+            if (withScores.length) {
+                const best = withScores[withScores.length - 1];
+                if (best.avg >= 75) {
+                    insights.push({
+                        icon: '✅', type: 'ok',
+                        title: `Strong performance in ${best.name}`,
+                        text: `Averaging ${best.avg}% — this topic is well understood. Consider moving to more advanced content or using it as a confidence-builder.`
+                    });
+                }
+            }
+
+            // Most viewed topic
+            const topView = allTopics
+                .filter(([,t]) => (t.views||0) > 1)
+                .sort(([,a],[,b]) => (b.views||0) - (a.views||0))[0];
+            if (topView && topView[1].views > 2) {
+                insights.push({
+                    icon: '📊', type: 'info',
+                    title: `"${topView[0]}" is frequently revisited`,
+                    text: `Viewed ${topView[1].views} times — students keep returning to this content. Ensure it is comprehensive and consider adding extra practice problems.`
+                });
+            }
+
+            // Overall progress
+            const totalQuizzes = allTopics.flatMap(([,t])=>t.quizzes||[]).length;
+            if (totalQuizzes > 0) {
+                const overallAvg = Math.round(
+                    allTopics.flatMap(([,t])=>t.quizzes||[])
+                        .reduce((s,q)=>s+(q.score/q.total*100),0) / totalQuizzes
+                );
+                insights.push({
+                    icon: '📈', type: 'info',
+                    title: `Overall quiz average: ${overallAvg}%`,
+                    text: `Based on ${totalQuizzes} quiz session${totalQuizzes>1?'s':''} recorded. ${overallAvg >= 75 ? 'Great overall performance! Keep it up.' : overallAvg >= 60 ? 'Good progress — focus on the weaker topics above.' : 'There is room for improvement. Use the AI tutor and review content regularly.'}`
+                });
+            }
+
+            const el = document.getElementById('insightsList');
+            if (!insights.length) {
+                el.innerHTML = `<div style="color:var(--text3);font-size:13px;text-align:center;padding:20px">
+                    💡 Complete quizzes and chat with the AI tutor to generate personalised insights!</div>`;
+                return;
+            }
+            el.innerHTML = insights.map(ins =>
+                `<div class="insight-item">
+                    <div class="insight-icon ${ins.type}">${ins.icon}</div>
+                    <div class="insight-text"><h4>${ins.title}</h4><p>${ins.text}</p></div>
+                </div>`
+            ).join('');
         }
 
         // ==================== TABS ====================
@@ -4997,6 +5838,8 @@ ${getRefsSection(topic, subjectKey)}` + contentFooter(topic);
             updateQuizTopics();
             renderStreak();
             refreshAnalytics();
+            checkServerHealth();
+            setInterval(checkServerHealth, 30000);
             // Close modal on overlay click
             document.getElementById('promptModal').addEventListener('click', function (e) {
                 if (e.target === this) closePromptModal();
